@@ -1,0 +1,213 @@
+html, body {
+    margin: 0;
+    font-size: 100%;
+    font-family: 'Open Sans', sans-serif;
+    background: #fff;
+}
+.mian-content {
+    background: url(../images/bg.jpg);
+    position: relative;
+    background-size: cover;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.banner-content {
+    padding: 10em 0 0em 0;
+}
+
+header.mainheader {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+a.nav-link.request {
+    padding: 0.5em 1.2em;
+    color: #ffffff;
+    background: transparent;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+    font-weight: 600;
+    background: #ef9632;
+}
+
+.navbar {
+    padding: 0em 0em;
+    background: transparent !important;
+    flex-basis: 100%;
+    -webkit-flex-basis: 100%;
+}
+.navbar-light .navbar-nav .show > .nav-link,
+.navbar-light .navbar-nav .active > .nav-link,
+.navbar-light .navbar-nav .nav-link.show,
+.navbar-light .navbar-nav .nav-link.active,
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link:focus {
+    background: transparent;
+    color: #36b1af;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    padding: 0.3em 1.2em;
+    color: #ffffff;
+    background: transparent;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+    font-weight: 600;
+}
+
+h1 a.navbar-brand {
+    font-size: 0.8em;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 5px;
+    color: #fff;
+}
+
+.navbar-light .navbar-brand {
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+}
+.banner-content h4 {
+    font-size: 1em;
+    padding: 1.1em 0 1.25em;
+    display: block;
+    font-weight: 300;
+    margin-bottom: 1em;
+    letter-spacing: 2px;
+}
+.banner-content h3 {
+    color: #fff;
+    font-size: 2.5em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    
+}
+.banner-high-lights {
+    padding-top: 18em;
+}
+.top-info ul li {
+    display: inline-block;
+}
+
+h4 {
+    margin-block-start: 1.33em;
+    margin-block-end: 1.33em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+p {
+    margin: 0;
+    font-size: 0.85em;
+    color: #8c9398;
+    line-height: 2em;
+    letter-spacing: 1px;
+}
+h3.tittle {
+    text-shadow: 2px 2px 2px rgba(41, 41, 41, 0.15);
+    font-size: 3em;
+    color: #ef9632;
+}
+.who_you_are h4 {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #36b1af;
+}
+.who_you_are img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+}
+.who_you_are h3 {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+footer {
+    background: #101010;
+}
+h3.tittle1 {
+    font-size: 1.7em;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+}
+.social-info p {
+    color: #bbbbbb;
+    line-height: 28px;
+    font-size: 15px;
+    letter-spacing: .7px;
+}
+.about-in .card {
+    padding: 3em 0.5em;
+    border: 1px solid transparent;
+    -webkit-transition: box-shadow 0.3s ease-in-out;
+    -moz-transition: box-shadow 0.3s ease-in-out;
+    -ms-transition: box-shadow 0.3s ease-in-out;
+    -o-transition: box-shadow 0.3s ease-in-out;
+    transition: box-shadow 0.3s ease-in-out;
+    background: transparent;
+}
+
+.about-in .card:hover {
+    background: #fff;
+    -webkit-box-shadow: 0px 0px 18.69px 2.31px rgba(204, 204, 223, 0.5);
+    -moz-box-shadow: 0px 0px 18.69px 2.31px rgba(204, 204, 223, 0.5);
+    box-shadow: 0px 0px 18.69px 2.31px rgba(204, 204, 223, 0.5);
+}
+
+.about-in p.card-text {
+    line-height: 2em;
+}
+
+.about-in .card i {
+    font-size: 2em;
+    color: #36b1af;
+}
+.about-in:hover .card i {
+    color: #ef9632;
+}
+.about-in .card h5.card-title {
+    font-size: 1.2em;
+}
+.about-in.middle-grid-info .card {
+    padding: 2em 1.5em;
+    background: #edeeef;
+    border-bottom: 4px solid #ef9632;
+}
+
+.about-in.middle-grid-info .card-body {
+    padding: 0;
+}
+
+.about-in.middle-grid-info h5.card-title {
+    font-size: 1.3em;
+    line-height: 1.4em;
+}
+
+.about-in.middle-grid-info:hover .card,
+.about-in.middle-grid-info.active .card {
+    border-bottom: 4px solid #36b1af;
+}
+
+
+.about-in p.card-text {
+    line-height: 2em;
+}
+
+
+
+p {
+    margin: 0;
+    font-size: 0.85em;
+    color: #8c9398;
+    letter-spacing: 1px;
+}
