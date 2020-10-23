@@ -148,6 +148,13 @@ h3.tittle1 {
     font-size: 15px;
     letter-spacing: .7px;
 }
+.cardImage{
+    height:25px
+    width : auto;
+    max-width:100px;
+    padding: 2em 0.5em;
+
+}
 .about-in .card {
     padding: 3em 0.5em;
     border: 1px solid transparent;
@@ -275,4 +282,183 @@ body.my-login-page {
 	margin: 40px 0;
 	color: #888;
 	text-align: center;
+}
+
+/**/ searching css/**/
+
+.side-bar {
+    border: 1px solid #D1E0EE;
+    padding: 25px 15px;
+}
+.search {
+    padding: 15px 0;
+    border-bottom: 1px solid #e5e3db;
+}
+h3.search {
+    color: #ef9632;
+    margin-bottom: 10px;
+    font-size: 22px;
+    font-weight: 400;
+}
+
+.search input[type="text"]{
+    background: #fff;
+    border: none;
+    width: 80%;
+    outline: none;
+    padding: 11px 10px 10px 10px;
+    font-size: 13px;
+    color: #c4c4c4;
+}
+.search form input[type="submit"] {
+    background: url(../images/search.png) no-repeat 13px 11px #ef9632;
+    width: 44px;
+    height: 39px;
+    border: none;
+    padding: 0;
+    margin-top: 0;
+}
+
+
+
+.drop-down-select {
+    padding: 25px 0 30px 0;
+    border-bottom: 1px solid #e5e3db;
+}
+
+.range {
+    padding: 25px 0 30px 0;
+    border-bottom: 1px solid #e5e3db;
+}
+
+ul.price-range {
+    margin: 0;
+    position: relative;
+    list-style: none;
+
+}
+input#amount {
+    font-size: 13px;
+    outline: none;
+    background: none;
+    word-spacing: 1em;
+    color: #000 !important;
+    position: absolute;
+    left: 0%;
+    top: -27px;
+    margin-top: -10px;
+}
+
+
+
+
+.display.col-md-9 {
+    padding-left: 40px;
+}
+.sort {
+    float: RIGHT;
+}
+.sort-by  {
+    font-size: 14px;
+    color: #9A9A9A;
+    margin-bottom: 8px;
+    font-weight: 400;
+}
+ul {
+    margin: 0;
+    padding: 0;
+}
+#container .list li {
+    background: #F9F9F9;
+    margin-bottom: 30px;
+    padding: 20px;
+    list-style-type: none;
+    /* transition: 0.5s all; */
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    /* box-shadow: 0 0 0.6em #ccc; */
+    -webkit-box-shadow: 0 0 0.6em #ccc;
+    -o-box-shadow: 0 0 0.6em #ccc;
+    -moz-box-shadow: 0 0 0.6em #ccc;
+    -ms-box-shadow: 0 0 0.6em #ccc;
+}
+#container .list li img {
+    float: left;
+    margin-right: 0;
+    padding-bottom: 0;
+    border: 1px solid #D1E0EE;
+    padding: 0;
+    width: 20%;
+    background-color: #fff;
+}
+#container .list li .list-left {
+    width: 60%;
+    margin-left: 3%;
+    float: left;
+}
+#container .list li .title {
+    overflow: hidden;
+    word-wrap: break-word;
+    font-size: 20px;
+    text-decoration: none;
+    color: #000000;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+#container .list li .price {
+    display: block;
+    font-size: 22px;
+    color: rgb(245, 2, 0);
+    margin: 10px 0 0 0;
+}
+#container .list li p {
+    overflow: hidden;
+    color: #C1C1C1;
+    font-size: 13px;
+    margin-top: 15px;
+}
+#container .list li .list-right {
+    width: 15%;
+    float: right;
+    text-align: right;
+}
+#container .list li .date {
+    float: right;
+    font-size: 14px;
+    display: block;
+    width: 100%;
+    margin: 15px 0 5px 0;
+    color: black;
+    font-weight: 400;
+}
+#container .list li .cityname {
+    display: block;
+    color: gray;
+}
+.pagination {
+    margin: 10px 0;
+    border-radius: 4px; 
+    float: RIGHT
+}
+.pagination>li 
+{
+    display: inline;
+    margin-left: 0;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 12px;
+    border: 1px solid blue;
+}
+.pagination>li>a,  {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #337ab7;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
 }
