@@ -442,16 +442,10 @@ ul {
     border-radius: 4px; 
     float: RIGHT
 }
-.pagination>li 
-{
-    display: inline;
-    margin-left: 0;
-    border-radius: 4px;
-    padding: 5px 10px;
-    font-size: 12px;
-    border: 1px solid blue;
-}
-.pagination>li>a,  {
+
+
+
+.pagination>li>a {
     position: relative;
     float: left;
     padding: 6px 12px;
@@ -461,4 +455,82 @@ ul {
     text-decoration: none;
     background-color: #fff;
     border: 1px solid #ddd;
+}
+
+.carousel-inner > .carousel-item > img {
+    height : 500px;
+    width : 100%;
+}
+.carousel-indicators li {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+  }
+  .carousel .carousel-indicators li {
+    background-color: #ddd;
+  }
+  
+  .carousel .carousel-indicators li.active {
+    background-color: black;
+  }
+  .carousel-indicators {
+    bottom: 100px;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 50px;
+  width: 50px;
+  outline: rgb(31, 29, 29);
+ 
+}
+.myview{
+    padding: 15px;
+    border: 1px solid #eee;
+}
+
+.house-element {
+    border: 3px solid rgba(255, 76, 76, 0.53);
+    margin-left: 15%;
+    padding: 0 15px;
+    position: relative;
+}
+.house-price {
+    padding: 20px 0;
+}
+p.price {
+    float: left;
+    width: 50%;
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+    color: #424242;
+    vertical-align: middle;
+    margin-top: 8px;
+    margin-left: 20px;
+}
+h3.price {
+    float: left;
+    color: #0099e5;
+    font-size: 30px;
+}
+.house-year p {
+    margin: 0;
+    margin-left: 20px;
+}
+.interested {
+    margin: 20px;
+    padding: 40px 20px;
+    background: rgba(255, 76, 76, 0.53);
+    margin-left: 15%;
+    margin-right: 0;
+}
+.interested h4 {
+    color: #000;
+    font-size: 19px;
+}
+.interested small {
+    font-weight: 400;
+    line-height: 1;
+    color: #777;
+    font-size: 75%;
 }
