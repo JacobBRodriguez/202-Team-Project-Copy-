@@ -1,0 +1,23 @@
+index.html:
+check authentication when user click Realtors, individuals and adminstrators
+	if logged in: route to service page and with some services disable(can't click)
+	if not logged in: route to login.html
+
+login.html:
+	check authentication
+		if successfully: toute to index.html and turn the LOGIN button to Sign-out
+		if not: tell user that's wrong
+sign-up.html:
+	sign up and save it into the database, then route to login.html
+
+remove_user.html:
+	when click on the X, need to ask for confirmation, yes/no, then delete from the database.
+searching.html:
+	1.according to which service user clicks on , then turn the Category to rent or sale
+	2. according to the price range, Category, and Zip Code, fetch datas from database
+	3. implement a sorting function
+single.html:
+	1. user can click on the heart to put the listing to favorite or undo it, change the image to favorite-after or favorite-before.
+	2. user can click on the contact and send email to the owner
+services:
+	check authentication, should be initially disable all services	
