@@ -373,12 +373,10 @@ ul {
     margin-bottom: 30px;
     padding: 20px;
     list-style-type: none;
-    /* transition: 0.5s all; */
     -webkit-transition: 0.5s all;
     -moz-transition: 0.5s all;
     -o-transition: 0.5s all;
     -ms-transition: 0.5s all;
-    /* box-shadow: 0 0 0.6em #ccc; */
     -webkit-box-shadow: 0 0 0.6em #ccc;
     -o-box-shadow: 0 0 0.6em #ccc;
     -moz-box-shadow: 0 0 0.6em #ccc;
@@ -580,4 +578,17 @@ h3.price {
     background-color: #02c0ce;
     border-color: #02c0ce;
 }
-/**  listings**/
+
+
+
+.favorite {
+    background: no-repeat 13px 11px;
+    width: 50px;
+    height: 50px;
+    border: none;
+    padding: 0;
+    margin-left: 50px;
+}
+.try{
+    background:transparent;
+}
