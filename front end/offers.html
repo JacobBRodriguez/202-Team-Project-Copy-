@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <title>Listings</title>
+    <title>Offers</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
 	
@@ -49,56 +49,9 @@
 	<!-- /features -->
 	<!-- searching inputs -->
 	<div class="container ">       
-		<div class="row">       
-			<div class="side-bar col-md-3">
-				
 			
-				<div class="drop-down-select">
-					<h3 class="search">Category</h3>
-					<select class="selectpicker" data-live-search="">
-					<option data-tokens="All">All</option>
-					<option data-tokens="Rent">Rent</option>
-					<option data-tokens="Sale">Sale</option>
-					</select>
-				</div>	
-
-				<div class="range">
-					<h3 class="search">Price range</h3>
-							<ul class="price-range">
-								<li>                
-									<div id="slider-range"></div>							
-										<input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" />
-									</li>			
-							</ul>
-							<!---->
-							<script type="text/javascript" src="js/jquery-ui.js"></script>
-							<script type='text/javascript'>
-							$(window).load(function(){
-							 $( "#slider-range" ).slider({
-										range: true,
-										min: 0,
-										max: 9000,
-										values: [ 0, 10000 ],
-										slide: function( event, ui ) {  $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
-										}
-							 });
-							$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) + " - $" + $( "#slider-range" ).slider( "values", 1 ) );
-
-							});//]]>  
-							</script>
-							
-				</div>
-				<div class="search ">
-					<h3 class="search">ZIP code</h3>
-					<form>
-						<input type="text" value="zip code" >
-						<input type="submit" value=" ">
-					</form>
-				</div>
-			</div>
 			
-			<!-- //searching inputs -->
-
+			
 			<div class="display col-md-9">
 				<div id="container">
 					<div class="sort">
@@ -126,7 +79,7 @@
 							<img src="images/l1.jpg" title="" alt="" />
 							<section class="list-left">
 							<h5 class="title">This is a Title</h5>
-							<span class="price">$290</span>
+							<span class="price">offer recieved: $290</span>
 							<p class="catpath">Tags ###</p>
 							</section>
 							<section class="list-right">
@@ -152,7 +105,7 @@
 							<img src="images/l2.jpg" title="" alt="" />
 							<section class="list-left">
 							<h5 class="title">This is a Title</h5>
-							<span class="price">$290</span>
+							<span class="price">offer recieved: $300</span>
 							<p class="catpath">Tags ###</p>
 							</section>
 							<section class="list-right">
@@ -177,7 +130,7 @@
 							<img src="images/l2.jpg" title="" alt="" />
 							<section class="list-left">
 							<h5 class="title">This is a Title</h5>
-							<span class="price">$290</span>
+							<span class="price">offer recieved: $500</span>
 							<p class="catpath">Tags ###</p>
 							</section>
 							<section class="list-right">
@@ -202,7 +155,7 @@
 							<img src="images/l2.jpg" title="" alt="" />
 							<section class="list-left">
 							<h5 class="title">This is a Title</h5>
-							<span class="price">$290</span>
+							<span class="price">offer recieved: $590</span>
 							<p class="catpath">Tags ###</p>
 							</section>
 							<section class="list-right">
@@ -227,7 +180,7 @@
 							<img src="images/l3.jpg" title="" alt="" />
 							<section class="list-left">
 							<h5 class="title">This is a Title</h5>
-							<span class="price">$290</span>
+							<span class="price">offer recieved: $800</span>
 							<p class="catpath">Tags ###</p>
 							</section>
 							<section class="list-right">
@@ -276,7 +229,7 @@
 					</ul>
 			</div>
 			<div class="clearfix"></div>
-		</div>
+		
 	</div>
 	<!-- //features -->
 
