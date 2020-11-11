@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<head>
+    <title>Add Listing</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link href="css/bootstrap.css" rel='stylesheet' type='text/css'/>
+    <link href="css/mystyle.css" rel='stylesheet' type='text/css'/>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<!-- mian-content -->
+<section class="mian-content">
+    <!-- /header-top-->
+    <div class="header-top">
+        <div class="container">
+            <header class="mainheader py-3">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <h1><a class="navbar-brand" href="index.html">Team 5</a></h1>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-toggle"
+                            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse navbar-toggle justify-content-end" id="navbarNavAltMarkup">
+                        <ul class="navbar-nav">
+                            <li><a class="nav-link text-uppercase" href="index.html">Home</a></li>
+                            <li><a class="nav-link text-uppercase" href="services.html">services</a></li>
+                        </ul>
+                        <div class="top-info text-left">
+                            <ul>
+                                <li class="number-phone"><a class="nav-link request text-uppercase font-weight-bold"
+                                                            href="login.html" data-toggle="modal"
+                                                            data-target="#exampleModalCenter">Login</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+            <!-- /header-top-->
+        </div>
+
+    </div>
+    <!-- //header-top-->
+</section>
+<div class="container">
+    <div class="row">
+        <h3 class="listing">Add a listing</h3>
+    </div>
+    <div class="row">
+        <form action="#" class="form">
+            <div class="column">
+                <label>Title</label><span class="required">*</span>
+                <input type="text" required="required">
+
+                <label for="Description">Description</label>
+                <textarea id="Description" name="Description" rows="5"></textarea>
+
+                <label>Address Line 1</label><span class="required">*</span>
+                <input type="text">
+
+                <label>Address Line 2</label>
+                <input type="text">
+
+                <label>Zip Code</label><span class="required">*</span>
+                <input type="text" maxlength="6">
+            </div>
+            <div class="column">
+                <label for="Category">Category</label><span class="required">*</span>
+                <input list="cat" name="Category" id="Category"/>
+                <datalist id="cat">
+                    <option value="House">
+                    <option value="Apartment">
+                    <option value="Room">
+                    <option value="Building">
+                </datalist>
+
+                <label for="Bedroom">Bedrooms</label><span class="required">*</span>
+                <input list="bed" name="Bedroom" id="Bedroom"/>
+                <datalist id="bed">
+                    <option value="1">
+                    <option value="2">
+                    <option value="3">
+                    <option value="4">
+                    <option value="5+">
+                </datalist>
+
+                <label for="Bathroom">Bathrooms</label>
+                <td><input list="bath" name="Bathroom" id="Bathroom"/></td>
+                <datalist id="bath">
+                    <option value="1">
+                    <option value="1.5">
+                    <option value="2">
+                    <option value="2.5">
+                    <option value="3">
+                    <option value="3.5">
+                    <option value="4">
+                    <option value="5+">
+                </datalist>
+
+                <label>Price</label>
+                <input type="text"><br>
+
+                <label for="img">Upload images</label>
+                <input type="file" id="img" name="img" accept="image/*" multiple>
+
+            </div>
+            <!--            <table>-->
+            <!--                <tr>-->
+            <!--                    <td>Title</td>-->
+            <!--                    <td><input type="text" /></td>-->
+            <!--                </tr>-->
+            <!--                <tr>-->
+            <!--                    <td for="Description">Description</td>-->
+            <!--                    <td><textarea id="Description" name="Description" rows="5"></textarea></td>-->
+            <!--                </tr>-->
+            <!--                <tr>-->
+            <!--                    <td>Address Line 1</td>-->
+            <!--                    <td><input type="text"/></td>-->
+            <!--                </tr>-->
+            <!--                <tr>-->
+            <!--                    <td>Address Line 2</td>-->
+            <!--                    <td><input type="text"/></td>-->
+            <!--                </tr>-->
+            <!--                <tr>-->
+            <!--                    <td for="Category">Category</td>-->
+            <!--                    <td><input list="cat" name="Category" id="Category"/>-->
+            <!--                        <datalist id="cat">-->
+            <!--                            <option value="House">-->
+            <!--                            <option value="Apartment">-->
+            <!--                            <option value="Room">-->
+            <!--                            <option value="Building">-->
+            <!--                        </datalist>-->
+            <!--                    </td>-->
+            <!--                </tr>-->
+            <!--                <tr>-->
+            <!--                    <td for="Bedroom">Bedrooms</td>-->
+            <!--                    <td><input list="bed" name="Bedroom" id="Bedroom"/>-->
+            <!--                        <datalist id="bed">-->
+            <!--                            <option value="1">-->
+            <!--                            <option value="2">-->
+            <!--                            <option value="3">-->
+            <!--                            <option value="4">-->
+            <!--                            <option value="5+">-->
+            <!--                        </datalist>-->
+            <!--                    </td>-->
+            <!--                </tr>-->
+            <!--                <tr>-->
+            <!--                    <td>Bathrooms</td>-->
+            <!--                    <td><input list="bath" name="Bathroom" id="Bathroom"/></td>-->
+            <!--                    <datalist id="bath">-->
+            <!--                        <option value="1">-->
+            <!--                        <option value="1.5">-->
+            <!--                        <option value="2">-->
+            <!--                        <option value="2.5">-->
+            <!--                        <option value="3">-->
+            <!--                        <option value="3.5">-->
+            <!--                        <option value="4">-->
+            <!--                        <option value="5+">-->
+            <!--                    </datalist>-->
+            <!--                </tr>-->
+            <!--                <tr>-->
+            <!--                    <td for="category">Category</td>-->
+            <!--                    <td><input type="text"/></td>-->
+            <!--                </tr>-->
+            <!--                </tr>-->
+            <!--                <tr>-->
+            <!--                    <td>ZipCode</td>-->
+            <!--                    <td><input type="text" maxlength="6"/></td>-->
+            <!--                </tr>-->
+            <!--                <tr>-->
+            <!--                    <td>Price</td>-->
+            <!--                    <td><input type="text"/></td>-->
+            <!--                </tr>-->
+            <!--                <tr>-->
+            <!--                    <td for="img">Upload images</td>-->
+            <!--                    <td><input type="file" id="img" name="img" accept="image/*" multiple></td>-->
+            <!--                </tr>-->
+            <!--            </table>-->
+            <button type="submit" class="btn btn-info">Submit listing</button>
+        </form>
+
+    </div>
+</div>
+</div>
+
+<!-- //features -->
+</body>
+
+<!--/footer-->
+<footer class="pymd-5 py-4" id="footer">
+    <div class="container">
+        <div class="inner-sec py-md-5 py-3">
+            <div class="row mb-md-4 mb-md-3">
+                <div class="col-lg-3 col-md-6 social-info text-left">
+                    <h3 class="tittle1 foot mb-md-5 mb-4 text-white">Contact</h3>
+                    <p>2020 fall semester </p>
+                    <p class="my-2">CMPE 202 Team 5 </p>
+                </div>
+                <div class="col-md-6 social-info text-left">
+                    <h3 class="tittle1 foot mb-md-5 mb-4 text-white">About Us</h3>
+                    <p>We are a 3-member team which aims to develop a user-friendly website related to houses busineses.
+                        Our features and functions are going to severs three kinds of people, they are realtor who is a
+                        representives of people, Individuals who handles their own houses, and lastly, Adminstrators who
+                        is going to maintain this website.</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!--//footer-->
+</html>
