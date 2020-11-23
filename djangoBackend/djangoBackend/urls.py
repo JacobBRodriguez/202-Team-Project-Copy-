@@ -15,7 +15,27 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
+import Team_5.views as views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    path('', views.index_view),
+    path('index.html', views.index_view),
+    path('login.html', views.login_view),
+    path('services.html', views.services_view),
+    path('searching.html', views.searching_view),
+    path('posting.html', views.posting_view),
+    path('approve_listing.html', views.approve_listing_view),
+    path('offers.html', views.offers_view),
+    path('remove_user.html', views.remove_user_view),
+    path('send_offer.html', views.send_offer_view),
+    path('sign-up.html', views.sign_up_view),
+    path('single.html', views.single_view),
+    path('logout', views.logout_view),
+    path('determine_route_index', views.determine_route_index_view),
+    path('query', views.search_view),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+
