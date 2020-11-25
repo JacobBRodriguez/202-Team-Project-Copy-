@@ -3,8 +3,13 @@ from django.http import Http404
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, ListingForm
 from .models import Listing
+import uuid
+import os
+from django.conf import settings
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
 from django.shortcuts import render, redirect
 
 
@@ -63,7 +68,63 @@ def posting_view(request):
         return render(request, 'main_app/posting.html')
 
     elif request.method == "POST":
+        user = request.user
+        form = ListingForm(request.POST)
+        print(request.POST)
+        if form.is_valid():
+            print("Is valid")
+            listing = form.save(commit=False)
+            images = request.FILES.getlist('images')
+
+            if images:
+                ext = images[0].name.split('.')[-1]
+                filename = "%s.%s" % (uuid.uuid4(), ext)
+                listing.photo_main = filename
+                path = default_storage.save(settings.MEDIA_ROOT+filename, ContentFile(images[0].read()))
+                del images[0]
+            if images:
+                ext = images[0].name.split('.')[-1]
+                filename = "%s.%s" % (uuid.uuid4(), ext)
+                listing.photo_1 = filename
+                path = default_storage.save(settings.MEDIA_ROOT + filename, ContentFile(images[0].read()))
+                del images[0]
+            if images:
+                ext = images[0].name.split('.')[-1]
+                filename = "%s.%s" % (uuid.uuid4(), ext)
+                listing.photo_2 = filename
+                path = default_storage.save(settings.MEDIA_ROOT + filename, ContentFile(images[0].read()))
+                del images[0]
+            if images:
+                ext = images[0].name.split('.')[-1]
+                filename = "%s.%s" % (uuid.uuid4(), ext)
+                listing.photo_3 = filename
+                path = default_storage.save(settings.MEDIA_ROOT + filename, ContentFile(images[0].read()))
+                del images[0]
+            if images:
+                ext = images[0].name.split('.')[-1]
+                filename = "%s.%s" % (uuid.uuid4(), ext)
+                listing.photo_4 = filename
+                path = default_storage.save(settings.MEDIA_ROOT + filename, ContentFile(images[0].read()))
+                del images[0]
+            if images:
+                ext = images[0].name.split('.')[-1]
+                filename = "%s.%s" % (uuid.uuid4(), ext)
+                listing.photo_5 = filename
+                path = default_storage.save(settings.MEDIA_ROOT + filename, ContentFile(images[0].read()))
+                del images[0]
+            if images:
+                ext = images[0].name.split('.')[-1]
+                filename = "%s.%s" % (uuid.uuid4(), ext)
+                listing.photo_6 = filename
+                path = default_storage.save(settings.MEDIA_ROOT + filename, ContentFile(images[0].read()))
+                del images[0]
+
+            listing.save()
+            return redirect('/services.html')
+
+        '''
         listing = Listing()
+        listing.user = request.user
         listing.title = request.POST.get('title')
         listing.address1 = request.POST.get('address1')
         listing.address2 = request.POST.get('address2')
@@ -73,34 +134,21 @@ def posting_view(request):
         listing.bedrooms = request.POST.get('Bedroom')
         listing.bathrooms = request.POST.get('Bathroom')
         listing.price = request.POST.get('price')
-        images = request.POST.getlist('img')
-
-        if images:
-            listing.photo_main = images[0]
-            del images[0]
-            if images:
-                listing.photo_1 = images[0]
-                del images[0]
-                if images:
-                    listing.photo_2 = images[0]
-                    del images[0]
-                    if images:
-                        listing.photo_3 = images[0]
-                        del images[0]
-                        if images:
-                            listing.photo_4 = images[0]
-                            del images[0]
-                            if images:
-                                listing.photo_5 = images[0]
-                                del images[0]
-                                if images:
-                                    listing.photo_6 = images[0]
+        photos = [listing.photo_main, listing.photo_1, listing.photo_2,
+                  listing.photo_3, listing.photo_4,
+                  listing.photo_5, listing.photo_6]
+        temp = 0
+        for f in request.POST.getlist('images'):
+            ext = f.split('.')[-1]
+            filename = "%s.%s" % (uuid.uuid4(), ext)
+            print(filename)
+            listing.photo_main = filename
+            break
         listing.save()
-        return redirect('/services.html')
+        '''
 
-    # If error out return to sign-up page
-    # TODO: Give message of invalid sign-up
-    return render(request, 'main_app/posting.html')
+        return redirect('/posting.html')
+
     # return posting.html
     return render(request, 'main_app/posting.html')
 

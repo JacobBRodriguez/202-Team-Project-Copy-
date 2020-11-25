@@ -322,11 +322,7 @@
 							<img src="{% static 'images/l3.jpg' %}" title="" alt="" />
 							<section class="list-left">
 							{% for item in listings.values %}
-								{{item}}
-								{{item.title}}
-								{{item.price}}
-								{{item.list_date}}
-								<img src={{item.photo_main.url}} title="" alt="" />
+								<img src="/media/{{item.photo_main}}" title="" alt="" />
 							{% endfor %}
 							</section>
 							<div class="clearfix"></div>

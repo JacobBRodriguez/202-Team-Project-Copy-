@@ -157,7 +157,11 @@
                     </div>
 
                     <div class="col-lg-4 about-in mt-lg-4 text-center">
-                        <a href="offers.html">
+                        {% if user.is_authenticated %}
+                            <a href="offers.html">
+                        {% else %}
+                                <a href="">
+                        {% endif %}
                         <div class="card">
                             <div class="card-body">
                                 <img src="{% static 'images/offer.png' %}" class="cardImage" >

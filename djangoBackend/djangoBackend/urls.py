@@ -36,6 +36,6 @@ urlpatterns = [
     path('logout', views.logout_view),
     path('determine_route_index', views.determine_route_index_view),
     path('query', views.search_view),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
