@@ -80,6 +80,7 @@
 
 ##### What tasks did I work on / complete?
 - Look into the recent commits by team members so as to see what backend structure I will now need
+- It's going to be different than what was previously planned
 
 ##### What am I planning to work on next?
 - Restructure the backend so that it will no longer be a REST API but will instead serve up static HTML files
@@ -89,6 +90,50 @@
 
 ##### XP Core Value Status (Communication):
 - Did not meet this last week. Have been communicating with the rest of the team via Slack channel chats.
+- Messaged team members to tell them that I will need to restructure the code since they didn't go with React-Django-REST Framework as previously discussed
+
+#### Week 7 (11/19/2020):
+
+##### What tasks did I work on / complete?
+- Began changing the code around so that the frontend can be served as static files by Django
+
+##### What am I planning to work on next?
+- Get all the frontend code to be able to serve via the backend
+- Alter the frontend code so that it can find static files via the static directory in django
+- Implement user creation and login views/models
+- Implement house listing model
+- Implement Admin page and functionality
+
+##### What tasks are blocked waiting on another team member?
+- None currently
+
+##### XP Core Value Status (Communication):
+- Did not meet this last week. Have been communicating with the rest of the team via Slack channel chats.
 - Messaged team members to tell them the current status of backend integrating with frontend.
+
+#### Week 8 (11/26/2020):
+
+##### What tasks did I work on / complete?
+- Completed migration of code to Django folder structure so that HTML pages can now be served on server
+- Completed change of HTML files so that they can access their necessary CSS/JS/IMG resources from new directory structure
+- Completed User Sign Up and Login functionalities with Sign Out capabilities on all pages
+- Completed Admin Page for User deletion and addition
+- Completed User Listing capabilities for new property listing
+- Successfully configured connection to remote backend database (MongoDB Altas)
+
+##### What am I planning to work on next?
+- User ability to view Listing on separate page with needed information
+- User ability to Like a Listing as their favorites
+- User ability to view their Listings that they made
+- User ability to message owner of listing
+- Cleanup and reformatting of changed frontend code
+
+##### What tasks are blocked waiting on another team member?
+- None currently
+
+##### XP Core Value Status (Communication):
+- Been communicating progress to team via Slack. Chanip has been very responsive to feedback about frontend.
+- Been trying to get a hold of Parshwa for some backend help but have not recieved a response in a few days.
+
 
 
