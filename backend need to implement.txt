@@ -1,15 +1,17 @@
+(Completed)
 index.html:
 check authentication when user click Realtors, individuals and adminstrators
 	if logged in: route to service page and with some services disable(can't click)
 	if not logged in: route to login.html
-
+(Partially completed - need to tell user it's wrong)
 login.html:
 	check authentication
 		if successfully: toute to index.html and turn the LOGIN button to Sign-out
 		if not: tell user that's wrong
+(Completed)		
 sign-up.html:
 	sign up and save it into the database, then route to login.html
-
+(Completed)
 remove_user.html:
 	when click on the X, need to ask for confirmation, yes/no, then delete from the database.
 searching.html:
@@ -19,5 +21,6 @@ searching.html:
 single.html:
 	1. user can click on the heart to put the listing to favorite or undo it, change the image to favorite-after or favorite-before.
 	2. user can click on the contact and send email to the owner
+(Completed)	
 services:
 	check authentication, should be initially disable all services	
