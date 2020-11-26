@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<head>
+    <title>Listings</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	{% load static %}
+    <link href="{% static 'css/bootstrap.css' %}" rel='stylesheet' type='text/css' />
+    <link href="{% static 'css/mystyle.css' %}" rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/jquery-ui1.css' %}">
+	<!-- js -->
+	<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+	<!-- js -->
+
+</head>
+
+<body>
+    <!-- mian-content -->
+    <section class="mian-content">
+        <!-- /header-top-->
+            <div class="header-top">
+				<div class="container">
+					<header class="mainheader py-3">
+						<nav class="navbar navbar-expand-lg navbar-light bg-light">
+							<h1><a class="navbar-brand" href="index.html">Team 5</a></h1>
+							<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-toggle" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						  </button>
+							<div class="collapse navbar-collapse navbar-toggle justify-content-end" id="navbarNavAltMarkup">
+								<ul class="navbar-nav">
+									<li><a class="nav-link text-uppercase" href="index.html">Home</a></li>
+									<li><a class="nav-link text-uppercase" href="services.html">services</a></li>	
+								</ul>
+								<div class="top-info text-left">
+									<ul>
+										{% if user.is_authenticated %}
+                                        <li class="number-phone"><a class="nav-link request text-uppercase font-weight-bold" href="logout" >Logout</a></li>
+                                        {% else %}
+										<li class="number-phone"><a class="nav-link request text-uppercase font-weight-bold" href="login.html" >Login</a></li>
+                                        {% endif %}
+									</ul>
+								</div>
+							</div>
+						</nav>
+					</header>
+                <!-- /header-top-->
+				</div>
+				
+            </div>
+        <!-- //header-top-->
+    </section>
+	<!-- //mian-content-->
+	
+	<!-- /features -->
+	<!-- searching inputs -->
+	<div class="container ">       
+		<div class="row">       
+			<div class="side-bar col-md-3">
+				
+			
+				<div class="drop-down-select">
+					<h3 class="search">Category</h3>
+					<select class="selectpicker" data-live-search="">
+					<option data-tokens="All">All</option>
+					<option data-tokens="Rent">Rent</option>
+					<option data-tokens="Sale">Sale</option>
+					</select>
+				</div>	
+
+				<div class="range">
+					<h3 class="search">Price range</h3>
+							<ul class="price-range">
+								<li>                
+									<div id="slider-range"></div>							
+										<input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" />
+									</li>			
+							</ul>
+							<!---->
+							<script type="text/javascript" src="{% static 'js/jquery-ui.js' %}"></script>
+							<script type='text/javascript'>
+							$(window).load(function(){
+							 $( "#slider-range" ).slider({
+										range: true,
+										min: 0,
+										max: 9000,
+										values: [ 0, 10000 ],
+										slide: function( event, ui ) {  $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+										}
+							 });
+							$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) + " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+
+							});//]]>  
+							</script>
+							
+				</div>
+				<div class="search ">
+					<h3 class="search">ZIP code</h3>
+					<form>
+						<input type="text" value="zip code" >
+						<input type="submit" value=" ">
+					</form>
+				</div>
+			</div>
+			
+			<!-- //searching inputs -->
+
+			<div class="display col-md-9">
+				<div id="container">
+					<div class="sort">
+						<div class="sort-by">
+							<label>Sort By : </label>
+								<select>
+									<option value="">Most recent</option>
+									<option value="">Price: Low to High</option>
+									<option value="">Price: High to Low</option>
+								</select>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+					<ul class="list"> 
+						<div class="row list-right ml-2">
+							<div class="col-xs-6 list-left ">
+								<button type="button" class="btn btn-outline-primary btn-sm approve">Approve</button>
+							</div>
+							<div class="col-xs-6 list-right ">
+								<button type="button" class="btn btn-outline-primary btn-sm delete">Delete</button>
+							</div>
+						</div>	
+						<a href="single.html">
+							<li>
+							<img src="{% static 'images/l1.jpg' %}" title="" alt="" />
+							<section class="list-left">
+							<h5 class="title">This is a Title</h5>
+							<span class="price">$290</span>
+							<p class="catpath">Tags ###</p>
+							</section>
+							<section class="list-right">
+							<span class="date">Today, 17:55</span>
+							<span class="cityname">City name</span>
+							</section>
+							<div class="clearfix"></div>
+							</li> 
+						</a>
+						
+					</ul>
+					<ul class="list">
+						<div class="row list-right ml-2">
+							<div class="col-xs-6 list-left ">
+								<button type="button" class="btn btn-outline-primary btn-sm approve">Approve</button>
+							</div>
+							<div class="col-xs-6 list-right ">
+								<button type="button" class="btn btn-outline-primary btn-sm delete">Delete</button>
+							</div>
+						</div>	
+						<a href="single.html">
+							<li>
+							<img src="{% static 'images/l2.jpg' }" title="" alt="" />
+							<section class="list-left">
+							<h5 class="title">This is a Title</h5>
+							<span class="price">$290</span>
+							<p class="catpath">Tags ###</p>
+							</section>
+							<section class="list-right">
+							<span class="date">Today, 17:55</span>
+							<span class="cityname">City name</span>
+							</section>
+							<div class="clearfix"></div>
+							</li> 
+						</a>
+					</ul>
+					<ul class="list">
+						<div class="row list-right ml-2">
+							<div class="col-xs-6 list-left ">
+								<button type="button" class="btn btn-outline-primary btn-sm approve">Approve</button>
+							</div>
+							<div class="col-xs-6 list-right ">
+								<button type="button" class="btn btn-outline-primary btn-sm delete">Delete</button>
+							</div>
+						</div>	
+						<a href="single.html">
+							<li>
+							<img src="{% static 'images/l2.jpg' %}" title="" alt="" />
+							<section class="list-left">
+							<h5 class="title">This is a Title</h5>
+							<span class="price">$290</span>
+							<p class="catpath">Tags ###</p>
+							</section>
+							<section class="list-right">
+							<span class="date">Today, 17:55</span>
+							<span class="cityname">City name</span>
+							</section>
+							<div class="clearfix"></div>
+							</li> 
+						</a>
+					</ul>
+					<ul class="list">
+						<div class="row list-right ml-2">
+							<div class="col-xs-6 list-left ">
+								<button type="button" class="btn btn-outline-primary btn-sm approve">Approve</button>
+							</div>
+							<div class="col-xs-6 list-right ">
+								<button type="button" class="btn btn-outline-primary btn-sm delete">Delete</button>
+							</div>
+						</div>	
+						<a href="single.html">
+							<li>
+							<img src="{% static 'images/l2.jpg' %}" title="" alt="" />
+							<section class="list-left">
+							<h5 class="title">This is a Title</h5>
+							<span class="price">$290</span>
+							<p class="catpath">Tags ###</p>
+							</section>
+							<section class="list-right">
+							<span class="date">Today, 17:55</span>
+							<span class="cityname">City name</span>
+							</section>
+							<div class="clearfix"></div>
+							</li> 
+						</a>
+					</ul>
+					<ul class="list">
+						<div class="row list-right ml-2">
+							<div class="col-xs-6 list-left ">
+								<button type="button" class="btn btn-outline-primary btn-sm approve">Approve</button>
+							</div>
+							<div class="col-xs-6 list-right">
+								<button type="button" class="btn btn-outline-primary btn-sm delete">Delete</button>
+							</div>
+						</div>	
+						<a href="single.html">
+							<li>
+							<img src="{% static 'images/l3.jpg' %}" title="" alt="" />
+							<section class="list-left">
+							<h5 class="title">This is a Title</h5>
+							<span class="price">$290</span>
+							<p class="catpath">Tags ###</p>
+							</section>
+							<section class="list-right">
+							<span class="date">Today, 17:55</span>
+							<span class="cityname">City name</span>
+							</section>
+							<div class="clearfix"></div>
+							</li> 
+						</a>
+					</ul>
+					<!--this is for approve btn -->
+					<script>
+						var approveBtn = document.getElementsByClassName("approve");
+						var i;
+						
+						for (i = 0; i < approveBtn.length; i++) {
+							approveBtn[i].addEventListener("click", function() {
+							this.parentElement.parentElement.parentElement.style.display = 'none';
+							});
+						}
+					</script>
+					<!--this is for delete btn -->
+
+					<script>
+						var deleteBtn = document.getElementsByClassName("delete");
+						var i;
+						
+						for (i = 0; i < approveBtn.length; i++) {
+							deleteBtn[i].addEventListener("click", function() {
+							this.parentElement.parentElement.parentElement.style.display = 'none';
+							});
+						}
+					</script>
+				</div>
+					<ul class="pagination ">
+						<li><a href="#">Prev</a></li>
+						<li><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li>
+						<li><a href="#">6</a></li>
+						<li><a href="#">7</a></li>
+						<li><a href="#">8</a></li>
+						<li><a href="#">Next</a></li>
+					</ul>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<!-- //features -->
+
+<!--/footer-->
+<footer class="pymd-5 " id="footer">
+    <div class="container">
+        <div class="inner-sec py-md-5 ">
+            <div class="row mb-md-4 mb-md-3">
+                <div class="col-lg-3 col-md-6 social-info text-left">
+                   <h3 class="tittle1 foot mb-md-5 mb-4 text-white">Contact</h3>
+                    <p>2020 fall semester  </p>
+                    <p class="my-2">CMPE 202 Team 5  </p>
+                </div>
+                <div class="col-md-6 social-info text-left">
+                 <h3 class="tittle1 foot mb-md-5 mb-4 text-white">About Us</h3>
+                   <p>We are a 3-member team which aims to develop a user-friendly website related to houses busineses. Our features and functions are going to severs three kinds of people, they are realtor who is a representives of people, Individuals who handles their own houses, and lastly, Adminstrators who is going to maintain this website.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!--//footer-->  
+</html>

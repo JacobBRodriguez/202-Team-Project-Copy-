@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+HOST_URL = os.getenv('MONGO_DB_URL')
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'Team_5',
 ]
+AUTH_USER_MODEL = 'Team_5.CustomUser'  # new
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -53,7 +55,12 @@ MIDDLEWARE = [
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'RealEstate',
+        'CLIENT': {
+            'host': 'mongodb+srv://cluster0.svtfi.mongodb.net/project?retryWrites=true&w=majority',
+            'username': 'sjsuUser',
+            'password': 'sjsutestuser21',
+        }
+
     }
 }
 ROOT_URLCONF = 'djangoBackend.urls'
@@ -61,8 +68,7 @@ ROOT_URLCONF = 'djangoBackend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR, '/templates']
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -118,3 +124,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")

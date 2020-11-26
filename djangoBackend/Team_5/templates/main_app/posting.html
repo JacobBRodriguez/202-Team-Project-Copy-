@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<head>
+    <title>Add Listing</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    {% load static %}
+    <link href="{% static 'css/bootstrap.css' %}" rel='stylesheet' type='text/css' />
+    <link href="{% static 'css/mystyle.css' %}" rel='stylesheet' type='text/css' />
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</head>
+
+<body>
+<!-- mian-content -->
+<section class="mian-content">
+    <!-- /header-top-->
+    <div class="header-top">
+        <div class="container">
+            <header class="mainheader py-3">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <h1><a class="navbar-brand" href="index.html">Team 5</a></h1>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-toggle"
+                            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse navbar-toggle justify-content-end" id="navbarNavAltMarkup">
+                        <ul class="navbar-nav">
+                            <li><a class="nav-link text-uppercase" href="index.html">Home</a></li>
+                            <li><a class="nav-link text-uppercase" href="services.html">services</a></li>
+                        </ul>
+                        <div class="top-info text-left">
+                            <ul>
+                                {% if user.is_authenticated %}
+                                <li class="number-phone"><a class="nav-link request text-uppercase font-weight-bold" href="logout" >Logout</a></li>
+                                {% else %}
+                                <li class="number-phone"><a class="nav-link request text-uppercase font-weight-bold" href="login.html" >Login</a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+            <!-- /header-top-->
+        </div>
+
+    </div>
+    <!-- //header-top-->
+</section>
+<div class="container">
+    <div class="row">
+        <h3 class="listing">Add a listing</h3>
+    </div>
+    <div class="row">
+        <form method="POST" class="form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="column">
+                <input id="user" name="user" type="hidden" value="{{user.id}}">
+
+                <label>Title</label><span class="required">*</span>
+                <input id="title" name="title" type="text" required="required">
+
+                <label for="Description">Description</label>
+                <textarea id="description" name="description" rows="5"></textarea>
+
+                <label>Address Line 1</label><span class="required">*</span>
+                <input id="address1" name="address1" type="text">
+
+                <label>Address Line 2</label>
+                <input id="address2" name="'address2" type="text">
+
+                <label>Zip Code</label><span class="required">*</span>
+                <input id="zipcode" name="zipcode" type="text" maxlength="6">
+            </div>
+            <div class="column">
+                <label for="id_category">Category</label><span class="required">*</span>
+                <!--
+                <input list="category" name="Category" id="id_category"/>
+                <datalist id="category">
+                    <option value="House">
+                    <option value="Apartment">
+                    <option value="Room">
+                    <option value="Building">
+                </datalist> -->
+
+                <select id="id_category" name="category" class="selectpicker">
+                    <option>---</option>
+                    <option value="House">House</option>
+                    <option value="Apartment">Apartment</option>
+                    <option value="Room">Room</option>
+                    <option value="Building">Building</option>
+                </select>
+
+                <label for="id_bedrooms">Bedrooms</label><span class="required">*</span>
+                <!--
+                <input list="bedrooms" name="Bedroom" id="id_bedrooms"/>
+                <datalist id="bedrooms">
+                    <option value="1">
+                    <option value="2">
+                    <option value="3">
+                    <option value="4">
+                    <option value="5+">
+                </datalist> -->
+                <select id="id_bedrooms" name="bedrooms" class="selectpicker">
+                    <option>---</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5+">5+</option>
+                </select>
+
+                <label for="id_bathrooms">Bathrooms</label><span class="required">*</span>
+                <!-- / Django doesn't recognize list type as input class
+                <td><input list="bathrooms" name="Bathroom" id="id_bathrooms"/></td>
+
+                <datalist id="bathrooms">
+                    <option value="1">
+                    <option value="1.5">
+                    <option value="2">
+                    <option value="2.5">
+                    <option value="3">
+                    <option value="3.5">
+                    <option value="4">
+                    <option value="5+">
+                </datalist>  -->
+                <select id="id_bathrooms" name="bathrooms" class="selectpicker">
+                    <option>---</option>
+                    <option value="1">1</option>
+                    <option value="1.5">1.5</option>
+                    <option value="2">2</option>
+                    <option value="2.5">2.5</option>
+                    <option value="3">3</option>
+                    <option value="3.5">3.5</option>
+                    <option value="4">4</option>
+                    <option value="5+">5+</option>
+                </select>
+
+                <label>Price</label><span class="required">*</span>
+                <input name="price" id="price" type="text"><br>
+
+                <label for="images">Upload images</label>
+                <input type="file" id="images" name="images" accept="image/*" multiple>
+
+                <button type="submit" class="btn btn-info">Submit listing</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+</div>
+
+<!-- //features -->
+</body>
+
+<!--/footer-->
+<footer class="pymd-5 py-4" id="footer">
+    <div class="container">
+        <div class="inner-sec py-md-5 py-3">
+            <div class="row mb-md-4 mb-md-3">
+                <div class="col-lg-3 col-md-6 social-info text-left">
+                    <h3 class="tittle1 foot mb-md-5 mb-4 text-white">Contact</h3>
+                    <p>2020 fall semester </p>
+                    <p class="my-2">CMPE 202 Team 5 </p>
+                </div>
+                <div class="col-md-6 social-info text-left">
+                    <h3 class="tittle1 foot mb-md-5 mb-4 text-white">About Us</h3>
+                    <p>We are a 3-member team which aims to develop a user-friendly website related to houses busineses.
+                        Our features and functions are going to severs three kinds of people, they are realtor who is a
+                        representatives of people, Individuals who handles their own houses, and lastly, Adminstrators who
+                        is going to maintain this website.</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!--//footer-->
+</html>

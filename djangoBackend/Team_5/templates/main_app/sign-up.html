@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<head>
+    <title>sign-up</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    {% load static %}
+    <link href="{% static 'css/bootstrap.css' %}" rel='stylesheet' type='text/css' />
+    <link href="{% static 'css/mystyle.css' %}" rel='stylesheet' type='text/css' />
+</head>
+
+<html>
+    <!-- mian-content -->
+    <section class="mian-content">
+        <!-- /header-top-->
+            <div class="header-top">
+				<div class="container">
+					<header class="mainheader py-3">
+						<nav class="navbar navbar-expand-lg navbar-light bg-light">
+							<h1><a class="navbar-brand" href="index.html">Team 5</a></h1>
+							<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-toggle" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						  </button>
+							<div class="collapse navbar-collapse navbar-toggle justify-content-end" id="navbarNavAltMarkup">
+								<ul class="navbar-nav">
+									<li><a class="nav-link text-uppercase" href="index.html">Home</a></li>
+									<li><a class="nav-link text-uppercase" href="services.html">services</a></li>	
+								</ul>
+								<div class="top-info text-left">
+									<ul>
+										{% if user.is_authenticated %}
+                                        <li class="number-phone"><a class="nav-link request text-uppercase font-weight-bold" href="logout" >Logout</a></li>
+                                        {% else %}
+										<li class="number-phone"><a class="nav-link request text-uppercase font-weight-bold" href="login.html" >Login</a></li>
+                                        {% endif %}
+									</ul>
+								</div>
+							</div>
+						</nav>
+					</header>
+                <!-- /header-top-->
+				</div>
+				
+            </div>
+        <!-- //header-top-->
+    </section>
+    <!-- //mian-content-->
+    <!-- /features -->
+	<body class="my-login-page">
+		<section class="h-100">
+			<div class="container h-100">
+				<div class="row justify-content-md-center h-100">
+					<div class="card-wrapper mt-5 mb-5">
+						<div class="card fat">
+							<div class="card-body">
+								<h4 class="card-title">Register</h4>
+								<form method="POST">
+								 {% csrf_token %}
+
+									<div class="form-group">
+										<label for="id_username">Username</label>
+										<input id="id_username" type="text" class="form-control" name="username" required autofocus>
+									</div>
+
+									<div class="form-group">
+										<label for="id_first_name">First Name</label>
+										<input id="id_first_name" type="text" class="form-control" name="first_name" required autofocus>
+									</div>
+
+									<div class="form-group">
+										<label for="id_last_name">Last Name</label>
+										<input id="id_last_name" type="text" class="form-control" name="last_name" required autofocus>
+									</div>
+
+
+									<div class="form-group">
+										<div class="row">
+											<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+												User Type
+											</div>
+											<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+												<select id="id_groups" name="user_type" class="selectpicker">
+													<option>---</option>
+													<option value="realtor">Realtor</option>
+													<option value="renter">Renter</option>
+													<option value="home_owner">House Owner/Landlord</option>
+													<option value="buyer">Buyer</option>
+												  </select>
+												  
+											</div>
+										
+										</div>
+									</div>
+									
+									  
+									<div class="form-group">
+										<label for="email">E-Mail Address</label>
+										<input id="email" type="email" class="form-control" name="email" required>
+									</div>
+	
+									<div class="form-group">
+										<label for="id_password1">Password</label>
+										<input id="id_password1" type="password" class="form-control" name="password1" required data-eye>
+									</div>
+
+									<div class="form-group">
+										<label for="id_password2">Confirm Password</label>
+										<input id="id_password2" type="password" class="form-control" name="password2" required data-eye>
+									</div>
+	
+									<div class="form-group">
+										<label>
+											<input type="checkbox" id="id_is_active" name="active" value="1"> I agree to the Terms and Conditions
+										</label>
+									</div>
+	
+									<div class="form-group no-margin">
+										<button type="submit" class="btn btn-primary btn-block">
+											Register
+										</button>
+									</div>
+									<div class="margin-top20 text-center">
+										Already have an account? <a href="login.html">Login</a>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</body>
+    <!-- //features -->
+<!--/footer-->
+<footer class="pymd-5 " id="footer">
+    <div class="container">
+        <div class="inner-sec py-md-5 ">
+            <div class="row mb-md-4 mb-md-3">
+                <div class="col-lg-3 col-md-6 social-info text-left">
+                   <h3 class="tittle1 foot mb-md-5 mb-4 text-white">Contact</h3>
+                    <p>2020 fall semester  </p>
+                    <p class="my-2">CMPE 202 Team 5  </p>
+                </div>
+                <div class="col-md-6 social-info text-left">
+                 <h3 class="tittle1 foot mb-md-5 mb-4 text-white">About Us</h3>
+                   <p>We are a 3-member team which aims to develop a user-friendly website related to houses busineses. Our features and functions are going to severs three kinds of people, they are realtor who is a representives of people, Individuals who handles their own houses, and lastly, Adminstrators who is going to maintain this website.</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!--//footer-->  
+</html>
