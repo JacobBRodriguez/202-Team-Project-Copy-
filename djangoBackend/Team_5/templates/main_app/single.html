@@ -21,7 +21,7 @@
 				<div class="container">
 					<header class="mainheader py-3">
 						<nav class="navbar navbar-expand-lg navbar-light bg-light">
-							<h1><a class="navbar-brand" href="index.html">Team 5</a></h1>
+							<h1><a class="navbar-brand" href="index.html" ref="home">Team 5</a></h1>
 							<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-toggle" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 							<span class="navbar-toggler-icon"></span>
 						  </button>
@@ -55,8 +55,8 @@
         <div id="demo" class="col-md-7 product-pictures carousel slide myview" data-ride="carousel">
             <div class="row">
                 <div class = " mt-9  ">
-                    <h2>This is a Title</h2>
-                    <p> <i class="glyphicon glyphicon-map-marker"></i> state, city , Added at 06:55 pm</p>
+                    <h2>{{ listing.title | capfirst }}</h2>
+                    <p> <i class="glyphicon glyphicon-map-marker"></i> state, city , {{ listing.time }}</p>
                 </div>
                 <div class = "mt-3  ">
                     <img class = "favorite" src="{% static 'images/favorite-after.png' %}" title="" alt="" />
@@ -90,14 +90,14 @@
                 <span class="carousel-control-next-icon"></span>
             </a>
             <div class = "house details">
-                <h5>something about the house</h4>
+                <h5>{{ listing.description | capfirst }}</h5>
             </div>
         </div>
         <div class="col-md-5 house-property">
             <div class="house-element">
                 <div class="house-price clearfix">
                     <p class="price">Price</p>
-                    <h3 class="price">$ 500000</h3>
+                    <h3 class="price">$ {{ listing.price }}</h3>
                 </div>
                 <div class="house-year">
                     <p class="price">Category</p>
@@ -105,7 +105,7 @@
                 </div>
 
                 <div class="house-year">
-                    <p class="price">House Type</p>
+                    <p class="price">{{ listing.category | capfirst }}</p>
                     <h4>House</h4>
                 </div>
 
@@ -116,21 +116,26 @@
 
                 <div class="house-year">
                     <p class="price">Bedrooms</p>
-                    <h4>5</h4>
+                    <h4>{{ listing.bedrooms }}</h4>
                 </div>
                 <div class="house-year">
                     <p class="price">Bathrooms</p>
-                    <h4>2</h4>
+                    <h4>{{ listing.bathrooms }}</h4>
                 </div>
                 <div class="house-year">
                     <p class="price">Address</p>
-                    <h8>413 example street, 94155, San Jose,CA</h8>
+                    <h8>{{ listing.address1 }},
+                        {% if listing.address2 %}
+                            {{ listing.address2 }},
+                        {% endif %}
+                        {{ listing.zipcode }}
+                    </h8>
                 </div>
             </div>
             <div class="interested text-center">
                 <h4>Interested in this House?</h4>
                 <p>415-205-4445</p>
-                <a href="send_offer.html" class="btn btn-info">Contact</a>
+                <a href="{% url 'send_offer' %}" class="btn btn-info" ref ="nofollow">Contact</a>
             </div>
         </div>    
         <div class="clearfix"></div>

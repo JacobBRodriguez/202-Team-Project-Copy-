@@ -164,13 +164,15 @@
 						</div>
 					</div>
 					<div class="clearfix"></div>
+<!--                Page listings       -->
+                    {% for listing in listings %}
 					<ul class="list">
-						<a href="single.html">
+						<a href="{% url 'single' listing.pk%}">
 							<li>
 							<img src="{% static 'images/l1.jpg' %}" title="" alt="" />
 							<section class="list-left">
-							<h5 class="title">This is a Title</h5>
-							<span class="price">$290</span>
+							<h5 class="title">{{ listing.title }}</h5>
+							<span class="price">${{ listing.price }}</span>
 							<p class="catpath">Tags ###</p>
 							</section>
 							<section class="list-right">
@@ -182,153 +184,154 @@
 							</li> 
 						</a>
 					</ul>
-					<ul class="list">
-						<a href="single.html">
-							<li>
-							<img src="{% static 'images/l2.jpg' %}" title="" alt="" />
-							<section class="list-left">
-								<h5 class="title">This is a Title</h5>
-								<span class="price">$290</span>
-								<p class="catpath">Tags ###</p>
-							</section>
-							<section class="list-right">
-								<span class="date">Today, 17:55</span>
-								<span class="cityname">City name</span>
-								<img src="{% static 'images/favorite-before.png' %}" title="" alt="" />
-							</section>
-							<div class="clearfix"></div>
-							</li> 
-						</a>
-					</ul>
-					<ul class="list">
-						<a href="single.html">
-							<li>
-							<img src="{% static 'images/l3.jpg' %}" title="" alt="" />
-							<section class="list-left">
-							<h5 class="title">This is a Title</h5>
-							<span class="price">$290</span>
-							<p class="catpath">Tags ###</p>
-							</section>
-							<section class="list-right">
-							<span class="date">Today, 17:55</span>
-							<span class="cityname">City name</span>
-							<img src="{% static 'images/favorite-before.png' %}" title="" alt="" />
-
-							</section>
-							<div class="clearfix"></div>
-							</li> 
-						</a>
-					</ul>
-					<ul class="list">
-						<a href="single.html">
-							<li>
-							<img src="{% static 'images/l3.jpg' %}" title="" alt="" />
-							<section class="list-left">
-							<h5 class="title">This is a Title</h5>
-							<span class="price">$290</span>
-							<p class="catpath">Tags ###</p>
-							</section>
-							<section class="list-right">
-							<span class="date">Today, 17:55</span>
-							<span class="cityname">City name</span>
-							<img src="{% static 'images/favorite-before.png' %}" title="" alt="" />
-
-							</section>
-							<div class="clearfix"></div>
-							</li> 
-						</a>
-					</ul>
-					<ul class="list">
-						<a href="single.html">
-							<li>
-							<img src="{% static 'images/l3.jpg' %}" title="" alt="" />
-							<section class="list-left">
-							<h5 class="title">This is a Title</h5>
-							<span class="price">$290</span>
-							<p class="catpath">Tags ###</p>
-							</section>
-							<section class="list-right">
-							<span class="date">Today, 17:55</span>
-							<span class="cityname">City name</span>
-							<img src="{% static 'images/favorite-before.png' %}" title="" alt="" />
-
-							</section>
-							<div class="clearfix"></div>
-							</li> 
-						</a>
-					</ul>
-					<ul class="list">
-						<a href="single.html">
-							<li>
-							<img src="{% static 'images/l3.jpg' %}" title="" alt="" />
-							<section class="list-left">
-							<h5 class="title">This is a Title</h5>
-							<span class="price">$290</span>
-							<p class="catpath">Tags ###</p>
-							</section>
-							<section class="list-right">
-							<span class="date">Today, 17:55</span>
-							<span class="cityname">City name</span>
-							<img src="{% static 'images/favorite-before.png' %}" title="" alt="" />
-
-							</section>
-							<div class="clearfix"></div>
-							</li> 
-						</a>
-					</ul>
-					<ul class="list">
-						<a href="single.html">
-							<li>
-							<img src="{% static 'images/l3.jpg' %}" title="" alt="" />
-							<section class="list-left">
-							<h5 class="title">This is a Title</h5>
-							<span class="price">$290</span>
-							<p class="catpath">Tags ###</p>
-							</section>
-							<section class="list-right">
-							<span class="date">Today, 17:55</span>
-							<span class="cityname">City name</span>
-							<img src="{% static 'images/favorite-before.png' %}" title="" alt="" />
-
-							</section>
-							<div class="clearfix"></div>
-							</li> 
-						</a>
-					</ul>
-					<ul class="list">
-						<a href="single.html">
-							<li>
-							<img src="{% static 'images/l3.jpg' %}" title="" alt="" />
-							<section class="list-left">
-							<h5 class="title">This is a Title</h5>
-							<span class="price">$290</span>
-							<p class="catpath">Tags ###</p>
-							</section>
-							<section class="list-right">
-							<span class="date">Today, 17:55</span>
-							<span class="cityname">City name</span>
-							<img src="{% static 'images/favorite-before.png' %}" title="" alt="" />
-
-							</section>
-							<div class="clearfix"></div>
-							</li> 
-						</a>
-					</ul>
-
-
-					<ul class="list">
-						<a href="single.html">
-							<li>
-							<img src="{% static 'images/l3.jpg' %}" title="" alt="" />
-							<section class="list-left">
-							{% for item in listings.values %}
-								<img src="/media/{{item.photo_main}}" title="" alt="" />
-							{% endfor %}
-							</section>
-							<div class="clearfix"></div>
-							</li>
-						</a>
-					</ul>
+                    {% endfor %}
+{#					<ul class="list">#}
+{#						<a href="single.html">#}
+{#							<li>#}
+{#							<img src="{% static 'images/l2.jpg' %}" title="" alt="" />#}
+{#							<section class="list-left">#}
+{#								<h5 class="title">This is a Title</h5>#}
+{#								<span class="price">$290</span>#}
+{#								<p class="catpath">Tags ###</p>#}
+{#							</section>#}
+{#							<section class="list-right">#}
+{#								<span class="date">Today, 17:55</span>#}
+{#								<span class="cityname">City name</span>#}
+{#								<img src="{% static 'images/favorite-before.png' %}" title="" alt="" />#}
+{#							</section>#}
+{#							<div class="clearfix"></div>#}
+{#							</li> #}
+{#						</a>#}
+{#					</ul>#}
+{#					<ul class="list">#}
+{#						<a href="single.html">#}
+{#							<li>#}
+{#							<img src="{% static 'images/l3.jpg' %}" title="" alt="" />#}
+{#							<section class="list-left">#}
+{#							<h5 class="title">This is a Title</h5>#}
+{#							<span class="price">$290</span>#}
+{#							<p class="catpath">Tags ###</p>#}
+{#							</section>#}
+{#							<section class="list-right">#}
+{#							<span class="date">Today, 17:55</span>#}
+{#							<span class="cityname">City name</span>#}
+{#							<img src="{% static 'images/favorite-before.png' %}" title="" alt="" />#}
+{##}
+{#							</section>#}
+{#							<div class="clearfix"></div>#}
+{#							</li> #}
+{#						</a>#}
+{#					</ul>#}
+{#					<ul class="list">#}
+{#						<a href="single.html">#}
+{#							<li>#}
+{#							<img src="{% static 'images/l3.jpg' %}" title="" alt="" />#}
+{#							<section class="list-left">#}
+{#							<h5 class="title">This is a Title</h5>#}
+{#							<span class="price">$290</span>#}
+{#							<p class="catpath">Tags ###</p>#}
+{#							</section>#}
+{#							<section class="list-right">#}
+{#							<span class="date">Today, 17:55</span>#}
+{#							<span class="cityname">City name</span>#}
+{#							<img src="{% static 'images/favorite-before.png' %}" title="" alt="" />#}
+{##}
+{#							</section>#}
+{#							<div class="clearfix"></div>#}
+{#							</li> #}
+{#						</a>#}
+{#					</ul>#}
+{#					<ul class="list">#}
+{#						<a href="single.html">#}
+{#							<li>#}
+{#							<img src="{% static 'images/l3.jpg' %}" title="" alt="" />#}
+{#							<section class="list-left">#}
+{#							<h5 class="title">This is a Title</h5>#}
+{#							<span class="price">$290</span>#}
+{#							<p class="catpath">Tags ###</p>#}
+{#							</section>#}
+{#							<section class="list-right">#}
+{#							<span class="date">Today, 17:55</span>#}
+{#							<span class="cityname">City name</span>#}
+{#							<img src="{% static 'images/favorite-before.png' %}" title="" alt="" />#}
+{##}
+{#							</section>#}
+{#							<div class="clearfix"></div>#}
+{#							</li> #}
+{#						</a>#}
+{#					</ul>#}
+{#					<ul class="list">#}
+{#						<a href="single.html">#}
+{#							<li>#}
+{#							<img src="{% static 'images/l3.jpg' %}" title="" alt="" />#}
+{#							<section class="list-left">#}
+{#							<h5 class="title">This is a Title</h5>#}
+{#							<span class="price">$290</span>#}
+{#							<p class="catpath">Tags ###</p>#}
+{#							</section>#}
+{#							<section class="list-right">#}
+{#							<span class="date">Today, 17:55</span>#}
+{#							<span class="cityname">City name</span>#}
+{#							<img src="{% static 'images/favorite-before.png' %}" title="" alt="" />#}
+{##}
+{#							</section>#}
+{#							<div class="clearfix"></div>#}
+{#							</li> #}
+{#						</a>#}
+{#					</ul>#}
+{#					<ul class="list">#}
+{#						<a href="single.html">#}
+{#							<li>#}
+{#							<img src="{% static 'images/l3.jpg' %}" title="" alt="" />#}
+{#							<section class="list-left">#}
+{#							<h5 class="title">This is a Title</h5>#}
+{#							<span class="price">$290</span>#}
+{#							<p class="catpath">Tags ###</p>#}
+{#							</section>#}
+{#							<section class="list-right">#}
+{#							<span class="date">Today, 17:55</span>#}
+{#							<span class="cityname">City name</span>#}
+{#							<img src="{% static 'images/favorite-before.png' %}" title="" alt="" />#}
+{##}
+{#							</section>#}
+{#							<div class="clearfix"></div>#}
+{#							</li> #}
+{#						</a>#}
+{#					</ul>#}
+{#					<ul class="list">#}
+{#						<a href="single.html">#}
+{#							<li>#}
+{#							<img src="{% static 'images/l3.jpg' %}" title="" alt="" />#}
+{#							<section class="list-left">#}
+{#							<h5 class="title">This is a Title</h5>#}
+{#							<span class="price">$290</span>#}
+{#							<p class="catpath">Tags ###</p>#}
+{#							</section>#}
+{#							<section class="list-right">#}
+{#							<span class="date">Today, 17:55</span>#}
+{#							<span class="cityname">City name</span>#}
+{#							<img src="{% static 'images/favorite-before.png' %}" title="" alt="" />#}
+{##}
+{#							</section>#}
+{#							<div class="clearfix"></div>#}
+{#							</li> #}
+{#						</a>#}
+{#					</ul>#}
+{##}
+{##}
+{#					<ul class="list">#}
+{#						<a href="single.html">#}
+{#							<li>#}
+{#							<img src="{% static 'images/l3.jpg' %}" title="" alt="" />#}
+{#							<section class="list-left">#}
+{#							{% for item in listings.values %}#}
+{#								<img src="/media/{{item.photo_main}}" title="" alt="" />#}
+{#							{% endfor %}#}
+{#							</section>#}
+{#							<div class="clearfix"></div>#}
+{#							</li>#}
+{#						</a>#}
+{#					</ul>#}
 
 
 				</div>

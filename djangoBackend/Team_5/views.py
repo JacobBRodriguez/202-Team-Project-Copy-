@@ -11,6 +11,7 @@ from django.conf import settings
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.shortcuts import render, redirect
+from bson import ObjectId
 
 
 # from .models import
@@ -53,13 +54,26 @@ def services_view(request):
 
 def searching_view(request):
     queryset_list = Listing.objects.order_by('-list_date')
-
+    for list2 in queryset_list:
+        print("from searching:",type(list2.pk))
     context = {
         'listings': queryset_list,
         'values': request.GET
     }
 
     return render(request, 'main_app/searching.html', context)
+
+
+def single_view(request,listing_id):
+    # return single.html
+    listing_id = ObjectId(listing_id)
+    try:
+        listing = Listing.objects.get(pk=listing_id)
+    except Listing.DoesNotExist:
+        raise Http404("Listing does not exists")
+    return render(request, 'main_app/single.html', {
+        "listing": listing,
+    })
 
 
 def posting_view(request):
@@ -185,12 +199,6 @@ def sign_up_view(request):
     # If error out return to sign-up page
     # TODO: Give message of invalid sign-up
     return render(request, 'main_app/sign-up.html')
-
-
-def single_view(request):
-    # return single.html
-    return render(request, 'main_app/single.html')
-
 
 # Other views for behavior
 
