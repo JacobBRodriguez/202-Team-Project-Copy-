@@ -169,15 +169,15 @@
 					<ul class="list">
 						<a href="{% url 'single' listing.pk%}">
 							<li>
-							<img src="{% static 'images/l1.jpg' %}" title="" alt="" />
+							<img src="/media/{{ listing.photo_main }}" title="" alt="" />
 							<section class="list-left">
 							<h5 class="title">{{ listing.title }}</h5>
 							<span class="price">${{ listing.price }}</span>
 							<p class="catpath">Tags ###</p>
 							</section>
 							<section class="list-right">
-							<span class="date">Today, 17:55</span>
-							<span class="cityname">City name</span>
+							<span class="date">{{ listing.date }}</span>
+							<span class="cityname">{{ listing.city }}</span>
 							<img src="{% static 'images/favorite-after.png' %}" title="" alt="" />
 						</section>
 							<div class="clearfix"></div>

@@ -33,7 +33,7 @@
 								<div class="top-info text-left">
 									<ul>
 										{% if user.is_authenticated %}
-                                        <li class="number-phone"><a class="nav-link request text-uppercase font-weight-bold" href="logout" >Logout</a></li>
+                                        <li class="number-phone"><a class="nav-link request text-uppercase font-weight-bold" href="{% url 'logout' %}" >Logout</a></li>
                                         {% else %}
 										<li class="number-phone"><a class="nav-link request text-uppercase font-weight-bold" href="login.html" >Login</a></li>
                                         {% endif %}
@@ -44,7 +44,6 @@
 					</header>
                 <!-- /header-top-->
 				</div>
-				
             </div>
         <!-- //header-top-->
     </section>
@@ -56,7 +55,7 @@
             <div class="row">
                 <div class = " mt-9  ">
                     <h2>{{ listing.title | capfirst }}</h2>
-                    <p> <i class="glyphicon glyphicon-map-marker"></i> state, city , {{ listing.time }}</p>
+                    <p> <i class="glyphicon glyphicon-map-marker"></i> {{ listing.state }}, {{ listing.city }} , {{ listing.time }}</p>
                 </div>
                 <div class = "mt-3  ">
                     <img class = "favorite" src="{% static 'images/favorite-after.png' %}" title="" alt="" />
@@ -73,14 +72,17 @@
             <!-- The slideshow -->
             <div class="carousel-inner ">
                 <div class="carousel-item active">
-                    <img src="{% static 'images/s1.png' %}"  >
+                    <img src="/media/{{listing.photo_main}}" >
                 </div>
+
                 <div class="carousel-item">
-                    <img src="{% static 'images/s2.png' %}" >
+                    <img src="/media/{{listing.photo_1}}" >
                 </div>
+
                 <div class="carousel-item">
-                    <img src="{% static 'images/s3.png' %}" >
+                    <img src="/media/{{listing.photo_2}}" >
                 </div>
+
             </div>
             <!-- Left and right controls -->
             <a class="carousel-control-prev" href="#demo" data-slide="prev">
@@ -101,7 +103,7 @@
                 </div>
                 <div class="house-year">
                     <p class="price">Category</p>
-                    <h4>Sell</h4>
+                    <h4>{{ listing.category }}</h4>
                 </div>
 
                 <div class="house-year">
