@@ -120,6 +120,7 @@ def posting_view(request):
         user = request.user
         form = ListingForm(request.POST)
         print(request.POST)
+        print(form.errors)
         if form.is_valid():
             print("Is valid")
             listing = form.save(commit=False)

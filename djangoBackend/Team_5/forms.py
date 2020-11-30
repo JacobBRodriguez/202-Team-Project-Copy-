@@ -80,7 +80,7 @@ class ListingForm(ModelForm):
         model = Listing
         fields = ('user', 'title', 'address1', 'address2', 'description', 'zipcode', 'category',
                   'bedrooms', 'bathrooms', 'price', 'photo_main', 'photo_1', 'photo_2',
-                  'photo_3', 'photo_4', 'photo_5', 'photo_6')
+                  'state', 'city', 'year', 'photo_3', 'photo_4', 'photo_5', 'photo_6')
 
     def save(self, commit=True):
         
@@ -88,12 +88,15 @@ class ListingForm(ModelForm):
         listing.user = self.cleaned_data['user']
         listing.title = self.cleaned_data["title"]
         listing.address1 = self.cleaned_data['address1']
-        listing.address2 = self.cleaned_data['description']
+        listing.address2 = self.cleaned_data['address2']
         listing.zipcode = self.cleaned_data['zipcode']
         listing.category = self.cleaned_data['category']
         listing.bedrooms = self.cleaned_data['bedrooms']
         listing.bathrooms = self.cleaned_data['bathrooms']
         listing.price = self.cleaned_data['price']
+        listing.year = self.cleaned_data['year']
+        listing.city = self.cleaned_data['city']
+        listing.state = self.cleaned_data['state']
         print(listing)
         if commit:
             listing.save()
