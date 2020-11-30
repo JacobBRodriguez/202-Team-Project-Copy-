@@ -32,10 +32,12 @@ urlpatterns = [
     path('remove_user.html', views.remove_user_view),
     path('send_offer.html', views.send_offer_view, name="send_offer"),
     path('sign-up.html', views.sign_up_view),
-    path('<str:listing_id>', views.single_view, name="single"),
     path('logout', views.logout_view),
     path('determine_route_index', views.determine_route_index_view),
     path('query', views.search_view),
+    path('favorites.html', views.favorite_list),
+    path('<str:listing_id>', views.single_view, name="single"),
+    path('<str:listing_id>/', views.favorite_post, name="favorite_post"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

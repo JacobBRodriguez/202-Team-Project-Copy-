@@ -27,8 +27,8 @@
 						  </button>
 							<div class="collapse navbar-collapse navbar-toggle justify-content-end" id="navbarNavAltMarkup">
 								<ul class="navbar-nav">
-									<li><a class="nav-link text-uppercase" href="index.html">Home</a></li>
-									<li><a class="nav-link text-uppercase" href="services.html">services</a></li>	
+									<li><a class="nav-link text-uppercase" href="/index.html">Home</a></li>
+									<li><a class="nav-link text-uppercase" href="/services.html">services</a></li>
 								</ul>
 								<div class="top-info text-left">
 									<ul>
@@ -58,8 +58,17 @@
                     <h2>{{ listing.title | capfirst }}</h2>
                     <p> <i class="glyphicon glyphicon-map-marker"></i> state, city , {{ listing.time }}</p>
                 </div>
-                <div class = "mt-3  ">
-                    <img class = "favorite" src="{% static 'images/favorite-after.png' %}" title="" alt="" />
+
+                <div class = "mt-3  " id="favorite-section">
+                    {% if is_favorite %}
+                    <a href="{% url 'favorite_post' listing.pk %}">
+                        <img class = "favorite" src="{% static 'images/favorite-after.png' %}" title="" alt="" />
+                    </a>
+                    {% else %}
+                    <a href="{% url 'favorite_post' listing.pk %}">
+                        <img class = "favorite" src="{% static 'images/favorite-before.png' %}" title="" alt="" />
+                    </a>
+                    {% endif %}
                 </div>
 
             </div>

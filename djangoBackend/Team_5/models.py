@@ -8,6 +8,21 @@ from djongo.models import ObjectIdField
 
 # Create your models here.
 
+class CustomUser(AbstractUser):
+    pass
+    user_type = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.username
+
+    def get_user_type(self):
+        return self.user_type
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super(CustomUser, self).__init__(*args, **kwargs)
+
+
 class Listing(models.Model):
     pass
     _id = models.ObjectIdField()
@@ -28,6 +43,8 @@ class Listing(models.Model):
     photo_4 = models.ImageField(upload_to='images/', blank=True)
     photo_5 = models.ImageField(upload_to='images/', blank=True)
     photo_6 = models.ImageField(upload_to='images/', blank=True)
+    favorite = models.ManyToManyField(CustomUser, related_name='favorite', blank=True)  # Listing has many CustomUsers
+    # and a CustomUser can be member of different Listings
     list_date = models.DateTimeField(default=datetime.now, blank=True)
     objects = models.DjongoManager()
 
@@ -36,19 +53,3 @@ class Listing(models.Model):
 
     def values(self):
         return self.title, self.address1
-
-
-class CustomUser(AbstractUser):
-    pass
-    user_type = models.CharField(max_length=200)
-    favorites = models.ManyToManyField(Listing, related_name="favorited_by", blank=True)
-
-    def __str__(self):
-        return self.username
-
-    def get_user_type(self):
-        return self.user_type
-
-    def __init__(self, *args, **kwargs):
-        self.user = kwargs.pop('user', None)
-        super(CustomUser, self).__init__(*args, **kwargs)

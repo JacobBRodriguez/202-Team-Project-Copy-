@@ -1,10 +1,11 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render
 from django.http import Http404
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CustomUserCreationForm, ListingForm
-from .models import Listing
+from .models import Listing, CustomUser
 import uuid
 import os
 from django.conf import settings
@@ -64,16 +65,50 @@ def searching_view(request):
     return render(request, 'main_app/searching.html', context)
 
 
-def single_view(request,listing_id):
+def favorite_list(request):
+
+    user = request.user
+    favorite_posts = user.favorite.all()
+    context = {
+        'favorite_posts': favorite_posts
+        }
+    return render(request, 'main_app/favorites.html', context)
+
+
+def favorite_post(request, listing_id):
+    list_id = ObjectId(listing_id)
+    listing = Listing.objects.get(pk=list_id)
+    is_favorite = False
+    try:
+        if listing.favorite.get(id=request.user.id):
+            listing.favorite.remove(request.user)
+    except ObjectDoesNotExist:
+        listing.favorite.add(request.user)
+        is_favorite = True
+    return single_view(request, listing_id)
+
+
+def single_view(request, listing_id):
     # return single.html
     listing_id = ObjectId(listing_id)
     try:
         listing = Listing.objects.get(pk=listing_id)
+        is_favorite = False
+        user = request.user
+        try:
+            if listing.favorite.get(id=user.id):
+                is_favorite = True
+        except ObjectDoesNotExist:
+            is_favorite = False
+
     except Listing.DoesNotExist:
         raise Http404("Listing does not exists")
-    return render(request, 'main_app/single.html', {
-        "listing": listing,
-    })
+
+    context = {
+        'listing': listing,
+        'is_favorite': is_favorite
+    }
+    return render(request, 'main_app/single.html', context)
 
 
 def posting_view(request):
