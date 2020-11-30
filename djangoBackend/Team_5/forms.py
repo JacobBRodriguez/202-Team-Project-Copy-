@@ -47,7 +47,6 @@ class CustomUserCreationForm(UserCreationForm):
                   'last_name', 'email',
                   'password1', 'password2',
                   'user_type', 'is_active',
-                  'favorites'
                   )
 
     def save(self, commit=True):
