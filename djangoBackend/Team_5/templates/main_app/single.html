@@ -33,9 +33,9 @@
 								<div class="top-info text-left">
 									<ul>
 										{% if user.is_authenticated %}
-                                        <li class="number-phone"><a class="nav-link request text-uppercase font-weight-bold" href="{% url 'logout' %}" >Logout</a></li>
+                                        <li class="number-phone"><a class="nav-link request text-uppercase font-weight-bold" href="/logout" >Logout</a></li>
                                         {% else %}
-										<li class="number-phone"><a class="nav-link request text-uppercase font-weight-bold" href="login.html" >Login</a></li>
+										<li class="number-phone"><a class="nav-link request text-uppercase font-weight-bold" href="/login.html" >Login</a></li>
                                         {% endif %}
 									</ul>
 								</div>
@@ -70,8 +70,17 @@
                     {% endif %}
                 </div>
 
+                <div class ='mt-3' id="back_button">
+                    <a href="/searching.html">
+                        <img src="{% static 'images/back_button.png' %}"/>
+                    </a>
+
             </div>
-            
+
+            </div>
+
+
+
             <!-- Indicators -->
             <ul class="carousel-indicators">
                 <li data-target="#demo" data-slide-to="0" class="active"></li>

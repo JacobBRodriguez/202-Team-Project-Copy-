@@ -29,15 +29,15 @@
                     </button>
                     <div class="collapse navbar-collapse navbar-toggle justify-content-end" id="navbarNavAltMarkup">
                         <ul class="navbar-nav">
-                            <li><a class="nav-link text-uppercase" href="index.html">Home</a></li>
-                            <li><a class="nav-link text-uppercase" href="services.html">services</a></li>
+                            <li><a class="nav-link text-uppercase" href="/index.html">Home</a></li>
+                            <li><a class="nav-link text-uppercase" href="/services.html">services</a></li>
                         </ul>
                         <div class="top-info text-left">
                             <ul>
                                 {% if user.is_authenticated %}
-                                <li class="number-phone"><a class="nav-link request text-uppercase font-weight-bold" href="{% url 'logout' %}" >Logout</a></li>
+                                <li class="number-phone"><a class="nav-link request text-uppercase font-weight-bold" href="/logout" >Logout</a></li>
                                 {% else %}
-                                <li class="number-phone"><a class="nav-link request text-uppercase font-weight-bold" href="login.html" >Login</a></li>
+                                <li class="number-phone"><a class="nav-link request text-uppercase font-weight-bold" href="/login.html" >Login</a></li>
                                 {% endif %}
                             </ul>
                         </div>

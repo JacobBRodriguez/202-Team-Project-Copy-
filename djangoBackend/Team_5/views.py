@@ -85,7 +85,12 @@ def favorite_post(request, listing_id):
     except ObjectDoesNotExist:
         listing.favorite.add(request.user)
         is_favorite = True
-    return single_view(request, listing_id)
+
+    context = {
+        'listing': listing,
+        'is_favorite': is_favorite
+    }
+    return render(request, 'main_app/single.html', context)
 
 
 def single_view(request, listing_id):
@@ -99,7 +104,7 @@ def single_view(request, listing_id):
             if listing.favorite.get(id=user.id):
                 is_favorite = True
         except ObjectDoesNotExist:
-            is_favorite = False
+            pass
 
     except Listing.DoesNotExist:
         raise Http404("Listing does not exists")
@@ -171,31 +176,6 @@ def posting_view(request):
 
             listing.save()
             return redirect('/services.html')
-
-        '''
-        listing = Listing()
-        listing.user = request.user
-        listing.title = request.POST.get('title')
-        listing.address1 = request.POST.get('address1')
-        listing.address2 = request.POST.get('address2')
-        listing.description = request.POST.get('Description')
-        listing.zipcode = request.POST.get('zipcode')
-        listing.category = request.POST.get('Category')
-        listing.bedrooms = request.POST.get('Bedroom')
-        listing.bathrooms = request.POST.get('Bathroom')
-        listing.price = request.POST.get('price')
-        photos = [listing.photo_main, listing.photo_1, listing.photo_2,
-                  listing.photo_3, listing.photo_4,
-                  listing.photo_5, listing.photo_6]
-        temp = 0
-        for f in request.POST.getlist('images'):
-            ext = f.split('.')[-1]
-            filename = "%s.%s" % (uuid.uuid4(), ext)
-            print(filename)
-            listing.photo_main = filename
-            break
-        listing.save()
-        '''
 
         return redirect('/posting.html')
 

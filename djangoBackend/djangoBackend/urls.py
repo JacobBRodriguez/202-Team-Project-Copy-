@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 import Team_5.views as views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin', admin.site.urls),
     path('', views.index_view),
     path('index.html', views.index_view),
     path('login.html', views.login_view),
@@ -37,7 +37,7 @@ urlpatterns = [
     path('query', views.search_view),
     path('favorites.html', views.favorite_list),
     path('<str:listing_id>', views.single_view, name="single"),
-    path('<str:listing_id>/', views.favorite_post, name="favorite_post"),
+    path('favorite/<str:listing_id>', views.favorite_post, name="favorite_post"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
     'Team_5',
 ]
 AUTH_USER_MODEL = 'Team_5.CustomUser'  # new
