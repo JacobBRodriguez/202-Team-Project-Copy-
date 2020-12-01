@@ -27,6 +27,7 @@ urlpatterns = [
     path('services.html', views.services_view),
     path('searching.html', views.searching_view),
     path('posting.html', views.posting_view),
+    path('rent_out.html', views.renting_view),
     path('approve_listing.html', views.approve_listing_view),
     path('offers.html', views.offers_view),
     path('remove_user.html', views.remove_user_view),

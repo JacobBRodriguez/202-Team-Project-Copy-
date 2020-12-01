@@ -56,14 +56,16 @@
 	<div class="container ">       
 		<div class="row">
 
-			<div class="side-bar col-md-3">
 
+			<div class="side-bar col-md-3">
+				<form method="POST" class="form" action="query" >
+					{% csrf_token %}
 				<div class="drop-down-select">
 					<h3 class="search">Category</h3>
 					<select class="selectpicker" name='rent_sale' data-live-search="">
-					<option data-tokens="All">All</option>
-					<option data-tokens="Rent">Rent</option>
-					<option data-tokens="Sale">Sale</option>
+					<option value="All">All</option>
+					<option value="rental">Rent</option>
+					<option value="for_sale">Sale</option>
 					</select>
 				</div>	
 				<div class="drop-down-select">
@@ -71,30 +73,31 @@
 					<select class="selectpicker" name='category' data-live-search="">
 					<option data-tokens="All">All</option>
 					<option data-tokens="Apartment">Apartment</option>
-					<option data-tokens="Townhome">Townhome</option>
+					<option data-tokens="Room">Room</option>
 					<option data-tokens="House">House</option>
-					<option data-tokens="Condos">Condos</option>
+					<option data-tokens="Building">Building</option>
 
 					</select>
 				</div>
 
+				<!-- out price slider
 				<div class="range">
 					<h3 class="search">Price range</h3>
 							<ul class="price-range">
 								<li>                
 									<div id="slider-range"></div>							
-										<input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" />
+										<input type="text" id="price" name="price" style="border: 0; color: #ffffff; font-weight: normal;" />
 									</li>			
 							</ul>
-							<!---->
+
 							<script type="text/javascript" src="{% static 'js/jquery-ui.js' %}"></script>
 							<script type='text/javascript'>
 							$(window).load(function(){
 							 $( "#slider-range" ).slider({
 										range: true,
 										min: 0,
-										max: 120000,
-										values: [ 0, 10000 ],
+										max: 2000000,
+										values: [ 0, 500000 ],
 										slide: function( event, ui ) {  $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
 										}
 							 });
@@ -103,51 +106,60 @@
 							});//]]>  
 							</script>
 							
+				</div> <!--/end price slider -->
+
+				<div class="search ">
+					<h3 class="search">Price Minimum</h3>
+
+						<input type="text" name="price_min" value="" >
+
 				</div>
+
+
+				<div class="search ">
+					<h3 class="search">Price Maximum</h3>
+
+						<input type="text" name="price_max" value="" >
+
+				</div>
+
 				<div class="search ">
 					<h3 class="search">ZIP code</h3>
-					<form action="query">
-						<input type="text" name="zipcode" value="zip code" >
-						<input type="submit" value=" ">
-					</form>
+
+						<input type="text" name="zipcode" value="" >
+
 				</div>
 				<div class="search ">
 					<h3 class="search">Street address</h3>
-					<form action="query">
-						<input type="text" name='address' value="Street" >
-						<input type="submit" value=" ">
-					</form>
+						<input type="text" name='address' value="" >
+
 				</div>
 				<div class="search ">
 					<h3 class="search">Year built</h3>
-					<form action="query">
-						<input type="text" name="year" value="Year built" >
-						<input type="submit" value=" ">
-					</form>
+
+						<input type="text" name="year" value="" >
+
 				</div>
 				<div class="search ">
 					<h3 class="search">Minimum sqft</h3>
-					<form action="query">
-						<input type="text" name="square" value="sqft" >
-						<input type="submit" value=" ">
-					</form>
+						<input type="text" name="square" value="" >
 				</div>
 				<div class="search ">
 					<h3 class="search">Bedrooms</h3>
-					<form action="query">
-						<input type="text" name='bedrooms' value="Bedrooms" >
-						<input type="submit" value=" ">
-					</form>
+
+						<input type="text" name='bedrooms' value="" >
+
 				</div>
 				<div class="search ">
 					<h3 class="search">Bathrooms</h3>
-					<form action="query">
-						<input type="text" name="'bathrooms" value="Bathrooms" >
-						<input type="submit" value=" ">
-					</form>
+						<input id="bathrooms" name="bathrooms">
 				</div>
-				
+				<button type="submit" class="btn btn-info">Update Listings</button>
+				</form>
 			</div>
+
+
+
 			
 			<!-- //searching inputs -->
 
