@@ -4,7 +4,7 @@ from django.http import Http404
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CustomUserCreationForm, ListingForm
+from .forms import CustomUserCreationForm, ListingForm, SendOfferForm
 from .models import Listing, CustomUser
 import uuid
 import os
@@ -13,6 +13,8 @@ from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.shortcuts import render, redirect
 from bson import ObjectId
+from django.core.mail import BadHeaderError, send_mail
+from django.http import HttpResponse, HttpResponseRedirect
 
 
 # from .models import
@@ -103,6 +105,7 @@ def single_view(request, listing_id):
         try:
             if listing.favorite.get(id=user.id):
                 is_favorite = True
+                request.session['listing_id'] = str(listing.pk)
         except ObjectDoesNotExist:
             pass
 
@@ -125,7 +128,6 @@ def posting_view(request):
         user = request.user
         form = ListingForm(request.POST)
         print(request.POST)
-        print(form.errors)
         if form.is_valid():
             print("Is valid")
             listing = form.save(commit=False)
@@ -198,9 +200,24 @@ def remove_user_view(request):
     return render(request, 'main_app/remove_user.html')
 
 
-def send_offer_view(request):
+def send_offer_view(request,listing_id):
     # return send offer.html
-    return render(request, 'main_app/send offer.html')
+    user = request.user
+    print(listing_id)
+    if request.method == "GET":
+        render(request, 'main_app/send_offer.html', {
+            'listing_id': listing_id,
+        })
+
+    if request.method == "POST":
+        form = SendOfferForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return render(request, "main_app/send_offer.html")
+
+    return render(request, 'main_app/send_offer.html', {
+            'listing_id': listing_id,
+        })
 
 
 def sign_up_view(request):
@@ -280,4 +297,21 @@ def search_view(request):
     }
 
     return render(request, 'main_app/searching.html', context)
+
+
+def send_email(request):
+    if request.method == 'GET':
+        return render(request, 'main_app/posting.html')
+    elif request.method == "POST":
+        subject = request.POST.get('subject', '')
+        from_email = request.POST.get('from_email', '')
+        message = request.POST.get('message', '')
+        if subject and message and from_email:
+            try:
+                send_mail(subject, message, from_email, ['admin@example.com'])
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+            return HttpResponseRedirect('/contact/thanks/')
+        else:
+            return HttpResponse('Make sure all fields are entered and valid.')
 

@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 import django.contrib.auth.models as models
 from django.forms import ModelForm
-from .models import CustomUser, Listing
+from .models import CustomUser, Listing, Offer
 import uuid
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
@@ -102,4 +102,24 @@ class ListingForm(ModelForm):
             listing.save()
 
         return listing
+
+
+class SendOfferForm(ModelForm):
+
+    class Meta:
+        model = Offer
+        fields = {'email', 'phone', 'offer', 'comment', 'user', 'listing_id'}
+
+    def save(self, commit = True):
+        offer_t = super(SendOfferForm, self).save(commit=False)
+        offer_t.user = self.cleaned_data['user']
+        offer_t.email = self.cleaned_data['email']
+        offer_t.phone = self.cleaned_data['phone']
+        offer_t.offer = self.cleaned_data['offer']
+        offer_t.listing_id = self.cleaned_data['listing_id']
+        print(offer_t)
+        if commit:
+            offer_t.save()
+        return offer_t
+
 
