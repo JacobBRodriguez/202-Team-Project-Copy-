@@ -169,7 +169,7 @@
 					<ul class="list">
 						<a href="{% url 'single' listing.pk%}">
 							<li>
-							<img src="{% static 'images/l1.jpg' %}" title="" alt="" />
+							<img src="/media/{{ listing.photo_main }}" title="" alt="" />
 							<section class="list-left">
 							<h5 class="title">{{ listing.title }}</h5>
 							<span class="price">${{ listing.price }}</span>

@@ -65,20 +65,6 @@
 #### Week 5 (11/05/2020):
 
 ##### What tasks did I work on / complete?
-- Nothing this week
-
-##### What am I planning to work on next?
-- Begin integrating React frontend to Django backend
-
-##### What tasks are blocked waiting on another team member?
-- Potentially React still not being installed. Need to review recent commits
-
-##### XP Core Value Status (Communication):
-- Spoke with team via Slack. Let them know that I have not had a chance to review the commits. Everyone still communicating their progress.
-
-#### Week 6 (11/12/2020):
-
-##### What tasks did I work on / complete?
 - Look into the recent commits by team members so as to see what backend structure I will now need
 - It's going to be different than what was previously planned
 
@@ -92,13 +78,13 @@
 - Did not meet this last week. Have been communicating with the rest of the team via Slack channel chats.
 - Messaged team members to tell them that I will need to restructure the code since they didn't go with React-Django-REST Framework as previously discussed
 
-#### Week 7 (11/19/2020):
+#### Week 6 (11/12/2020):
 
 ##### What tasks did I work on / complete?
 - Began changing the code around so that the frontend can be served as static files by Django
 
 ##### What am I planning to work on next?
-- Get all the frontend code to be able to serve via the backend
+Get all the frontend code to be able to serve via the backend
 - Alter the frontend code so that it can find static files via the static directory in django
 - Implement user creation and login views/models
 - Implement house listing model
@@ -108,13 +94,13 @@
 - None currently
 
 ##### XP Core Value Status (Communication):
-- Did not meet this last week. Have been communicating with the rest of the team via Slack channel chats.
+Did not meet this last week. Have been communicating with the rest of the team via Slack channel chats.
 - Messaged team members to tell them the current status of backend integrating with frontend.
 
-#### Week 8 (11/26/2020):
+#### Week 7 (11/19/2020):
 
 ##### What tasks did I work on / complete?
-- Completed migration of code to Django folder structure so that HTML pages can now be served on server
+Completed migration of code to Django folder structure so that HTML pages can now be served on server
 - Completed change of HTML files so that they can access their necessary CSS/JS/IMG resources from new directory structure
 - Completed User Sign Up and Login functionalities with Sign Out capabilities on all pages
 - Completed Admin Page for User deletion and addition
@@ -134,6 +120,26 @@
 ##### XP Core Value Status (Communication):
 - Been communicating progress to team via Slack. Chanip has been very responsive to feedback about frontend.
 - Been trying to get a hold of Parshwa for some backend help but have not recieved a response in a few days.
+- (Added) Was able to get a hold of Parshwa. He has been helping with the backend feature implementation.
+#### Week 8 (11/26/2020):
+
+##### What tasks did I work on / complete?
+- Completed user favorite functionality
+- Completed debug of Searching feature
+- Completed addition of Rental vs. For Sale listings and additional page for rental posts
+- Updated Burndown chart to reflect our last Sprint
+- Helping Parshwa get the communication between Lister and client down so that I can complete the view for Listings that the user posted on
+- Updated Project Board with new feature additions and completions
+
+##### What am I planning to work on next?
+- 
+
+##### What tasks are blocked waiting on another team member?
+- None currently
+
+##### XP Core Value Status (Communication):
+- Plenty of communication via Slack
+- Spoke with Parshwa over Zoom to give him insight on passing user credentials through a template
 
 
 

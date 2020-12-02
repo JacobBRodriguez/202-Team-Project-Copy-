@@ -49,6 +49,7 @@ class Listing(models.Model):
     favorite = models.ManyToManyField(CustomUser, related_name='favorite', blank=True)  # Listing has many CustomUsers
     # and a CustomUser can be member of different Listings
     list_date = models.DateTimeField(default=datetime.now, blank=True)
+    listing_type = models.CharField(max_length=200)
     objects = models.DjongoManager()
 
     def __str__(self):
