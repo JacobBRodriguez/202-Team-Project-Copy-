@@ -327,7 +327,7 @@ def sign_up_view(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'main_app/login.html')
+            return redirect('/login.html')
     # If error out return to sign-up page
     # TODO: Give message of invalid sign-up
     return render(request, 'main_app/sign-up.html')
