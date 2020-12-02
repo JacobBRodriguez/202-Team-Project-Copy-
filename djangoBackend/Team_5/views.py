@@ -1,16 +1,18 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render
 from django.http import Http404
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CustomUserCreationForm, ListingForm
-from .models import Listing
+from .models import Listing, CustomUser
 import uuid
 import os
 from django.conf import settings
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.shortcuts import render, redirect
+from bson import ObjectId
 
 
 # from .models import
@@ -53,13 +55,65 @@ def services_view(request):
 
 def searching_view(request):
     queryset_list = Listing.objects.order_by('-list_date')
-
+    for list2 in queryset_list:
+        print("from searching:",type(list2.pk))
     context = {
         'listings': queryset_list,
         'values': request.GET
     }
 
     return render(request, 'main_app/searching.html', context)
+
+
+def favorite_list(request):
+
+    user = request.user
+    favorite_posts = user.favorite.all()
+    context = {
+        'favorite_posts': favorite_posts
+        }
+    return render(request, 'main_app/favorites.html', context)
+
+
+def favorite_post(request, listing_id):
+    list_id = ObjectId(listing_id)
+    listing = Listing.objects.get(pk=list_id)
+    is_favorite = False
+    try:
+        if listing.favorite.get(id=request.user.id):
+            listing.favorite.remove(request.user)
+    except ObjectDoesNotExist:
+        listing.favorite.add(request.user)
+        is_favorite = True
+
+    context = {
+        'listing': listing,
+        'is_favorite': is_favorite
+    }
+    return render(request, 'main_app/single.html', context)
+
+
+def single_view(request, listing_id):
+    # return single.html
+    listing_id = ObjectId(listing_id)
+    try:
+        listing = Listing.objects.get(pk=listing_id)
+        is_favorite = False
+        user = request.user
+        try:
+            if listing.favorite.get(id=user.id):
+                is_favorite = True
+        except ObjectDoesNotExist:
+            pass
+
+    except Listing.DoesNotExist:
+        raise Http404("Listing does not exists")
+
+    context = {
+        'listing': listing,
+        'is_favorite': is_favorite
+    }
+    return render(request, 'main_app/single.html', context)
 
 
 def posting_view(request):
@@ -70,7 +124,74 @@ def posting_view(request):
     elif request.method == "POST":
         user = request.user
         form = ListingForm(request.POST)
+
+        if form.is_valid():
+
+            listing = form.save(commit=False)
+            images = request.FILES.getlist('images')
+
+            if images:
+                ext = images[0].name.split('.')[-1]
+                filename = "%s.%s" % (uuid.uuid4(), ext)
+                listing.photo_main = filename
+                path = default_storage.save(settings.MEDIA_ROOT+filename, ContentFile(images[0].read()))
+                del images[0]
+            if images:
+                ext = images[0].name.split('.')[-1]
+                filename = "%s.%s" % (uuid.uuid4(), ext)
+                listing.photo_1 = filename
+                path = default_storage.save(settings.MEDIA_ROOT + filename, ContentFile(images[0].read()))
+                del images[0]
+            if images:
+                ext = images[0].name.split('.')[-1]
+                filename = "%s.%s" % (uuid.uuid4(), ext)
+                listing.photo_2 = filename
+                path = default_storage.save(settings.MEDIA_ROOT + filename, ContentFile(images[0].read()))
+                del images[0]
+            if images:
+                ext = images[0].name.split('.')[-1]
+                filename = "%s.%s" % (uuid.uuid4(), ext)
+                listing.photo_3 = filename
+                path = default_storage.save(settings.MEDIA_ROOT + filename, ContentFile(images[0].read()))
+                del images[0]
+            if images:
+                ext = images[0].name.split('.')[-1]
+                filename = "%s.%s" % (uuid.uuid4(), ext)
+                listing.photo_4 = filename
+                path = default_storage.save(settings.MEDIA_ROOT + filename, ContentFile(images[0].read()))
+                del images[0]
+            if images:
+                ext = images[0].name.split('.')[-1]
+                filename = "%s.%s" % (uuid.uuid4(), ext)
+                listing.photo_5 = filename
+                path = default_storage.save(settings.MEDIA_ROOT + filename, ContentFile(images[0].read()))
+                del images[0]
+            if images:
+                ext = images[0].name.split('.')[-1]
+                filename = "%s.%s" % (uuid.uuid4(), ext)
+                listing.photo_6 = filename
+                path = default_storage.save(settings.MEDIA_ROOT + filename, ContentFile(images[0].read()))
+                del images[0]
+
+            listing.save()
+            return redirect('/services.html')
+
+        return redirect('/posting.html')
+
+    # return posting.html
+    return render(request, 'main_app/posting.html')
+
+
+def renting_view(request):
+
+    if request.method == 'GET':
+        return render(request, 'main_app/rent_out.html')
+
+    elif request.method == "POST":
+        user = request.user
+        form = ListingForm(request.POST)
         print(request.POST)
+        print(form.errors)
         if form.is_valid():
             print("Is valid")
             listing = form.save(commit=False)
@@ -122,35 +243,10 @@ def posting_view(request):
             listing.save()
             return redirect('/services.html')
 
-        '''
-        listing = Listing()
-        listing.user = request.user
-        listing.title = request.POST.get('title')
-        listing.address1 = request.POST.get('address1')
-        listing.address2 = request.POST.get('address2')
-        listing.description = request.POST.get('Description')
-        listing.zipcode = request.POST.get('zipcode')
-        listing.category = request.POST.get('Category')
-        listing.bedrooms = request.POST.get('Bedroom')
-        listing.bathrooms = request.POST.get('Bathroom')
-        listing.price = request.POST.get('price')
-        photos = [listing.photo_main, listing.photo_1, listing.photo_2,
-                  listing.photo_3, listing.photo_4,
-                  listing.photo_5, listing.photo_6]
-        temp = 0
-        for f in request.POST.getlist('images'):
-            ext = f.split('.')[-1]
-            filename = "%s.%s" % (uuid.uuid4(), ext)
-            print(filename)
-            listing.photo_main = filename
-            break
-        listing.save()
-        '''
-
-        return redirect('/posting.html')
+        return redirect('/rent_out.html')
 
     # return posting.html
-    return render(request, 'main_app/posting.html')
+    return render(request, 'main_app/rent_out.html')
 
 
 def approve_listing_view(request):
@@ -186,13 +282,8 @@ def sign_up_view(request):
     # TODO: Give message of invalid sign-up
     return render(request, 'main_app/sign-up.html')
 
-
-def single_view(request):
-    # return single.html
-    return render(request, 'main_app/single.html')
-
-
 # Other views for behavior
+
 
 def determine_route_index_view(request):
     if request.user.is_authenticated:
@@ -205,55 +296,69 @@ def search_view(request):
     queryset_list = Listing.objects.order_by('-list_date')
 
     # Category
-    if 'category' in request.GET:
-        category = request.GET['category']
-        if category:
+    if 'rent_sale' in request.POST:
+        listing_type = request.POST['rent_sale']
+        if listing_type and (listing_type != "All"):
+            queryset_list = queryset_list.filter(listing_type=listing_type)
+
+    # Category
+    if 'category' in request.POST:
+        category = request.POST['category']
+        if category and (category != "All"):
             queryset_list = queryset_list.filter(category=category)
 
+    # Price Minimum
+    if 'price_min' in request.POST:
+        price_min = request.POST['price_min']
+        if price_min and (price_min != ""):
+            queryset_list = queryset_list.filter(price__gte=price_min)
+
+    # Price Maximum
+    if 'price_max' in request.POST:
+        price_max = request.POST['price_max']
+        if price_max and (price_max != ""):
+            queryset_list = queryset_list.filter(price__lte=price_max)
+
     # Zipcode
-    if 'zipcode' in request.GET:
-        zipcode = request.GET['zipcode']
-        if zipcode:
+    if 'zipcode' in request.POST:
+        zipcode = request.POST['zipcode']
+        if zipcode and (zipcode != ""):
             queryset_list = queryset_list.filter(zipcode=zipcode)
 
     # Address
-    if 'address' in request.GET:
-        address = request.GET['address']
-        if address:
+    if 'address' in request.POST:
+        address = request.POST['address']
+        if address and (address != ""):
             queryset_list = queryset_list.filter(address1__icontains=address)
 
     # Year
-    if 'year' in request.GET:
-        year = request.GET['year']
-        if year:
-            # TODO: Item not in posting functionality yet
-            print(year)
-            # queryset_list = queryset_list.filter(year=year)
+    if 'year' in request.POST:
+        year = request.POST['year']
+        if year and (year != ""):
+            queryset_list = queryset_list.filter(year=year)
 
     # Min Sqft
-    if 'square' in request.GET:
-        square = request.GET['square']
+    if 'square' in request.POST:
+        square = request.POST['square']
         if square:
             # TODO: Item not in posting functionality yet
             print(square)
             # queryset_list = queryset_list.filter(square=square)
 
     # Bedrooms
-    if 'bedrooms' in request.GET:
-        bedrooms = request.GET['bedrooms']
-        if bedrooms:
+    if 'bedrooms' in request.POST:
+        bedrooms = request.POST['bedrooms']
+        if bedrooms and (bedrooms != ""):
             queryset_list = queryset_list.filter(bedrooms=bedrooms)
 
     # Bathrooms
-    if 'bathrooms' in request.GET:
-        bathrooms = request.GET['bathrooms']
-        if bathrooms:
+    if 'bathrooms' in request.POST:
+        bathrooms = request.POST['bathrooms']
+        if bathrooms and (bathrooms != ""):
             queryset_list = queryset_list.filter(bathrooms=bathrooms)
 
     context = {
         'listings': queryset_list,
-        'values': request.GET
     }
-
     return render(request, 'main_app/searching.html', context)
 

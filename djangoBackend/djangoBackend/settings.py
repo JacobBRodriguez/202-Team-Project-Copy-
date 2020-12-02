@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
     'Team_5',
 ]
 AUTH_USER_MODEL = 'Team_5.CustomUser'  # new
@@ -57,8 +56,8 @@ DATABASES = {
         'ENGINE': 'djongo',
         'CLIENT': {
             'host': 'mongodb+srv://cluster0.svtfi.mongodb.net/project?retryWrites=true&w=majority',
-            'username': 'sjsuUser',
-            'password': 'sjsutestuser21',
+            'username': 'parshwa_g',
+            'password': 'sjsutempuser1',
         }
 
     }

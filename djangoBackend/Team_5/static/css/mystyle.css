@@ -155,6 +155,11 @@ h3.tittle1 {
     padding: 2em 0.5em;
 
 }
+
+.img-fluid_2 {
+    max-height: 150px;
+    width: auto;
+}
 .about-in .card {
     padding: 3em 0.5em;
     border: 1px solid transparent;
