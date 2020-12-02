@@ -213,6 +213,13 @@ def send_offer_view(request,listing_id):
         form = SendOfferForm(request.POST)
         if form.is_valid():
             form.save()
+
+            listing = Listing.objects.get(_id= ObjectId(listing_id))
+            print("listing:",listing.user_id)
+            listing_user = CustomUser.objects.get(id = listing.user_id)
+
+            send_mail("Someone liked your listing","here is the price", request.POST ['email'], [listing_user.email],
+                      fail_silently=False)
         return render(request, "main_app/send_offer.html")
 
     return render(request, 'main_app/send_offer.html', {
@@ -240,7 +247,6 @@ def determine_route_index_view(request):
         return redirect('/services.html')
 
     return redirect('/login.html')
-
 
 def search_view(request):
     queryset_list = Listing.objects.order_by('-list_date')
@@ -297,21 +303,3 @@ def search_view(request):
     }
 
     return render(request, 'main_app/searching.html', context)
-
-
-def send_email(request):
-    if request.method == 'GET':
-        return render(request, 'main_app/posting.html')
-    elif request.method == "POST":
-        subject = request.POST.get('subject', '')
-        from_email = request.POST.get('from_email', '')
-        message = request.POST.get('message', '')
-        if subject and message and from_email:
-            try:
-                send_mail(subject, message, from_email, ['admin@example.com'])
-            except BadHeaderError:
-                return HttpResponse('Invalid header found.')
-            return HttpResponseRedirect('/contact/thanks/')
-        else:
-            return HttpResponse('Make sure all fields are entered and valid.')
-
