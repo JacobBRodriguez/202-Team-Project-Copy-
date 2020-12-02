@@ -58,16 +58,60 @@
 			
 			<div class="display col-md-9">
 				<div id="container">
-					<div class="sort">
-						<div class="sort-by">
-							<label>Sort By : </label>
-								<select>
-									<option value="">Most recent</option>
-									<option value="">Price: Low to High</option>
-									<option value="">Price: High to Low</option>
-								</select>
-						</div>
-					</div>
+
+				<h3>Sent Offers</h3>
+					{% for listing in sent_offers %}
+					<ul class="list">
+						<a href="{% url 'single' listing.pk%}">
+							<li>
+							<img src="/media/{{ listing.photo_main }}" title="" alt="" />
+							<section class="list-left">
+							<h5 class="title">{{ listing.title }}</h5>
+							<span class="price">${{ listing.price }}</span>
+							<p class="catpath">Tags ###</p>
+							</section>
+							<section class="list-right">
+							<span class="date">{{ listing.date }}</span>
+							<span class="cityname">{{ listing.city }}</span>
+							<img src="{% static 'images/favorite-after.png' %}" title="" alt="" />
+						</section>
+							<div class="clearfix"></div>
+							</li>
+						</a>
+					</ul>
+
+					{% empty %}
+					<h5 class="title">No Offers Sent</h5>
+					<div class="clearfix"></div>
+                    {% endfor %}
+
+
+					<h3>Received Offers</h3>
+					{% for listing in received_offers %}
+					<ul class="list">
+						<a href="{% url 'single' listing.listing_id %}">
+							<li>
+							<section class="list-left">
+							<h5 class="title">{{ listing.email }}</h5>
+							<span class="price">${{ listing.offer }}</span>
+							<p class="catpath">Tags ###</p>
+							</section>
+							<section class="list-right">
+							<span class="date">{{ listing.phone }}</span>
+							<span class="cityname">{{ listing.comment }}</span>
+							<img src="{% static 'images/favorite-after.png' %}" title="" alt="" />
+						</section>
+							<div class="clearfix"></div>
+							</li>
+						</a>
+					</ul>
+					{% empty %}
+					<h5 class="title">No Offers Received</h5>
+					<div class="clearfix"></div>
+                    {% endfor %}
+
+
+					<!-- comment out fake listings
 					<div class="clearfix"></div>
 					<ul class="list"> 
 						<div class="row list-right ml-2">
@@ -202,6 +246,8 @@
 							</li> 
 						</a>
 					</ul>
+					/end fake -->
+
 					<!--this is for approve btn -->
 					<script>
 						var approveBtn = document.getElementsByClassName("approve");
@@ -263,4 +309,4 @@
     </div>
 </footer>
 <!--//footer-->  
-</html>
+</body>

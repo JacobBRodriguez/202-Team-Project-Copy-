@@ -4,8 +4,8 @@ from django.http import Http404
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CustomUserCreationForm, ListingForm
-from .models import Listing, CustomUser
+from .forms import CustomUserCreationForm, ListingForm, SendOfferForm
+from .models import Listing, CustomUser, Offer
 import uuid
 import os
 from django.conf import settings
@@ -13,6 +13,8 @@ from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.shortcuts import render, redirect
 from bson import ObjectId
+from django.core.mail import BadHeaderError, send_mail
+from django.http import HttpResponse, HttpResponseRedirect
 
 
 # from .models import
@@ -103,6 +105,7 @@ def single_view(request, listing_id):
         try:
             if listing.favorite.get(id=user.id):
                 is_favorite = True
+                request.session['listing_id'] = str(listing.pk)
         except ObjectDoesNotExist:
             pass
 
@@ -191,7 +194,6 @@ def renting_view(request):
         user = request.user
         form = ListingForm(request.POST)
         print(request.POST)
-        print(form.errors)
         if form.is_valid():
             print("Is valid")
             listing = form.save(commit=False)
@@ -255,8 +257,41 @@ def approve_listing_view(request):
 
 
 def offers_view(request):
+
+    user = request.user
+    queryset_list = Offer.objects.order_by('user_id')
+    queryset_list = queryset_list.filter(user_id=user.id)
+    sent_listings = []
+    # Get the sent listing objects
+    for item in queryset_list:
+        try:
+            listing_id = ObjectId(item.listing_id)
+            listing = Listing.objects.get(pk=listing_id)
+            sent_listings.append(listing)
+        except ObjectDoesNotExist:
+            continue
+    # Get all Listings that a person received offers for
+    querylist_received = Listing.objects.filter(user_id=user.id)
+    received_listings = []
+    for item in querylist_received:
+        try:
+            listing_id = str(item.pk)
+            one_listing = Offer.objects.filter(listing_id=listing_id)
+            # If multiple offers on a single listing
+            if one_listing.count() > 1:
+                for obj in one_listing:
+                    received_listings.append(obj)
+            elif one_listing:
+                received_listings.append(one_listing.first())
+
+        except ObjectDoesNotExist:
+            continue
+    context = {
+        'sent_offers': sent_listings,
+        'received_offers': received_listings
+    }
     # return offers.html
-    return render(request, 'main_app/offers.html')
+    return render(request, 'main_app/offers.html', context)
 
 
 def remove_user_view(request):
@@ -264,9 +299,24 @@ def remove_user_view(request):
     return render(request, 'main_app/remove_user.html')
 
 
-def send_offer_view(request):
+def send_offer_view(request,listing_id):
     # return send offer.html
-    return render(request, 'main_app/send offer.html')
+    user = request.user
+    print(listing_id)
+    if request.method == "GET":
+        render(request, 'main_app/send_offer.html', {
+            'listing_id': listing_id,
+        })
+
+    if request.method == "POST":
+        form = SendOfferForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return render(request, "main_app/send_offer.html")
+
+    return render(request, 'main_app/send_offer.html', {
+            'listing_id': listing_id,
+        })
 
 
 def sign_up_view(request):
@@ -361,4 +411,21 @@ def search_view(request):
         'listings': queryset_list,
     }
     return render(request, 'main_app/searching.html', context)
+
+
+def send_email(request):
+    if request.method == 'GET':
+        return render(request, 'main_app/posting.html')
+    elif request.method == "POST":
+        subject = request.POST.get('subject', '')
+        from_email = request.POST.get('from_email', '')
+        message = request.POST.get('message', '')
+        if subject and message and from_email:
+            try:
+                send_mail(subject, message, from_email, ['admin@example.com'])
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+            return HttpResponseRedirect('/contact/thanks/')
+        else:
+            return HttpResponse('Make sure all fields are entered and valid.')
 

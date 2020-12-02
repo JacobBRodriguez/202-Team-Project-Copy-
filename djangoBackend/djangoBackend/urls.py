@@ -31,7 +31,7 @@ urlpatterns = [
     path('approve_listing.html', views.approve_listing_view),
     path('offers.html', views.offers_view),
     path('remove_user.html', views.remove_user_view),
-    path('send_offer.html', views.send_offer_view, name="send_offer"),
+    path('send_offer.html/<str:listing_id>', views.send_offer_view, name="send_offer"),
     path('sign-up.html', views.sign_up_view),
     path('logout', views.logout_view),
     path('determine_route_index', views.determine_route_index_view),

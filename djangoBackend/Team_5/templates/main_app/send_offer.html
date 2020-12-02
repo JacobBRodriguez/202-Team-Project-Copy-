@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <title>send offer</title>
+    <title>Send offer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     {% load static %}
@@ -16,21 +16,21 @@
 				<div class="container">
 					<header class="mainheader py-3">
 						<nav class="navbar navbar-expand-lg navbar-light bg-light">
-							<h1><a class="navbar-brand" href="index.html">Team 5</a></h1>
+							<h1><a class="navbar-brand" href="/index.html" ref ="nofollow">Team 5</a></h1>
 							<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-toggle" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 							<span class="navbar-toggler-icon"></span>
 						  </button>
 							<div class="collapse navbar-collapse navbar-toggle justify-content-end" id="navbarNavAltMarkup">
 								<ul class="navbar-nav">
-									<li><a class="nav-link text-uppercase" href="index.html">Home</a></li>
-									<li><a class="nav-link text-uppercase" href="services.html">services</a></li>	
+									<li><a class="nav-link text-uppercase" href="/index.html" ref ="nofollow">Home</a></li>
+									<li><a class="nav-link text-uppercase" href="/services.html" ref ="nofollow">services</a></li>
 								</ul>
 								<div class="top-info text-left">
 									<ul>
 										{% if user.is_authenticated %}
-                                        <li class="number-phone"><a class="nav-link request text-uppercase font-weight-bold" href="logout" >Logout</a></li>
+                                        <li class="number-phone"><a class="nav-link request text-uppercase font-weight-bold" href="/logout" ref ="nofollow">Logout</a></li>
                                         {% else %}
-										<li class="number-phone"><a class="nav-link request text-uppercase font-weight-bold" href="login.html" >Login</a></li>
+										<li class="number-phone"><a class="nav-link request text-uppercase font-weight-bold" href="/login.html" ref ="nofollow">Login</a></li>
                                         {% endif %}
 									</ul>
 								</div>
@@ -50,10 +50,18 @@
 			<div class="card fat">
 				<div class="card-body">
 					<fieldset disabled>
-						<label for="disabledTextInput">positng ID# / house title</label>
+						<label for="disabledTextInput"> </label>
 					</fieldset>
-					<h4 class="card-title">your contact</h4>
-					<form method="POST">
+					<h4 class="card-title">Your Contact</h4>
+                    {{ listing_id }}
+					<form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class = "form-group">
+                            <input id="user" name="user" type="hidden" value="{{user.id}}">
+                        </div>
+                        <div class = "form-group">
+                            <input id="listing_id" name="listing_id" type="hidden" value="{{listing_id}}">
+                        </div>
 						<div class="form-group">
 							<label for="email">E-Mail Address</label>
 							<input id="email" type="email" class="form-control" name="email" value="" required autofocus>
@@ -71,7 +79,7 @@
 						<div class="form-group">
 							<label for="comment">Your comment(optional)
 							</label>
-							<input id="comment" type="comment" class="form-control" name="comment" required data-eye>
+							<input id="comment" type="comment" class="form-control" name="comment">
 						</div>
 						<div class="form-group no-margin">
 							<button type="submit" class="btn btn-primary btn-block">

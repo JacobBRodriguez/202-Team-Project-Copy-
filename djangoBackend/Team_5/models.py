@@ -57,3 +57,17 @@ class Listing(models.Model):
 
     def values(self):
         return self.title, self.address1
+
+
+class Offer(models.Model):
+    email = models.EmailField(max_length=255)
+    phone = models.IntegerField(max_length=13)
+    offer = models.IntegerField()
+    comment = models.TextField(blank=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
+    listing_id = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.email
+
+
