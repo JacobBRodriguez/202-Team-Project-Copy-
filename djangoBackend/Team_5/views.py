@@ -5,7 +5,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CustomUserCreationForm, ListingForm, SendOfferForm
-from .models import Listing, CustomUser
+from .models import Listing, CustomUser, Offer
 import uuid
 import os
 from django.conf import settings
@@ -191,8 +191,41 @@ def approve_listing_view(request):
 
 
 def offers_view(request):
+
+    user = request.user
+    queryset_list = Offer.objects.order_by('user_id')
+    queryset_list = queryset_list.filter(user_id=user.id)
+    sent_listings = []
+    # Get the sent listing objects
+    for item in queryset_list:
+        try:
+            listing_id = ObjectId(item.listing_id)
+            listing = Listing.objects.get(pk=listing_id)
+            sent_listings.append(listing)
+        except ObjectDoesNotExist:
+            continue
+    # Get all Listings that a person received offers for
+    querylist_received = Listing.objects.filter(user_id=user.id)
+    received_listings = []
+    for item in querylist_received:
+        try:
+            listing_id = str(item.pk)
+            one_listing = Offer.objects.filter(listing_id=listing_id)
+            # If multiple offers on a single listing
+            if one_listing.count() > 1:
+                for obj in one_listing:
+                    received_listings.append(obj)
+            elif one_listing:
+                received_listings.append(one_listing.first())
+
+        except ObjectDoesNotExist:
+            continue
+    context = {
+        'sent_offers': sent_listings,
+        'received_offers': received_listings
+    }
     # return offers.html
-    return render(request, 'main_app/offers.html')
+    return render(request, 'main_app/offers.html', context)
 
 
 def remove_user_view(request):
