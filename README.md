@@ -21,7 +21,10 @@ Jacob Rodriguez </br>
 - Will no longer be doing a Django REST-Framework with React
 - Instead will be serving up html files as Django templates within the Django app itself
 - Will need to restructure base code so that all files are under the *djangoBackend* folder now
-
+#### Third Sprint Design:
+- Will focus on implementation
+#### Forth Sprint Design:
+- Will keep doing implementation, further more, start to use AWS, either for validation and testing.
 ### Diagrams:
 #### Overall Dependency of Components
 ![Component](https://github.com/gopinathsjsu/fa20-cmpe-202-sec-03-team-project-team-5/blob/master/design_images/Dependency%20Diagram.png?raw=true)
