@@ -118,6 +118,13 @@ USE_L10N = True
 
 USE_TZ = True
 
+SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
+
+EMAIL_HOST_PASSWORD = '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'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'apikey'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
