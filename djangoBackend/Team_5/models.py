@@ -26,7 +26,7 @@ class CustomUser(AbstractUser):
 class Listing(models.Model):
     pass
     _id = models.ObjectIdField()
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) # Delete when user is deleted
     title = models.CharField(max_length=200)
     address1 = models.CharField(max_length=200)
     address2 = models.CharField(max_length=200, blank=True)
@@ -64,7 +64,7 @@ class Offer(models.Model):
     phone = models.BigIntegerField()
     offer = models.BigIntegerField()
     comment = models.TextField(blank=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) # Delete when user is deleted
     listing_id = models.CharField(max_length=255)
 
     def __str__(self):
