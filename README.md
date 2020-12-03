@@ -31,3 +31,20 @@ Jacob Rodriguez
 
 ### Feature Set of Website:
 - (TODO: Add to)
+
+### Project URLs
+GitHub Repo
+https://github.com/gopinathsjsu/fa20-cmpe-202-sec-03-team-project-team-5
+
+Project Board
+https://github.com/gopinathsjsu/fa20-cmpe-202-sec-03-team-project-team-5/projects/1
+
+Project Journal
+https://github.com/gopinathsjsu/fa20-cmpe-202-sec-03-team-project-team-5/blob/master/Project%20Journal
+
+Google Sprint Task Sheet & burndown chart
+https://docs.google.com/spreadsheets/d/1hmaxy0rC4w1bO9iUSOJgVA3cTYgKkh3Lv9J3Y84oYuU/edit#gid=1401709108
+
+Clearer pictures of diagrams
+https://github.com/gopinathsjsu/fa20-cmpe-202-sec-03-team-project-team-5/tree/master/Diagrams
+
