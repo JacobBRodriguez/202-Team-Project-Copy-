@@ -203,7 +203,6 @@ def remove_user_view(request):
 def send_offer_view(request,listing_id):
     # return send offer.html
     user = request.user
-    print(listing_id)
     if request.method == "GET":
         render(request, 'main_app/send_offer.html', {
             'listing_id': listing_id,
@@ -211,14 +210,16 @@ def send_offer_view(request,listing_id):
 
     if request.method == "POST":
         form = SendOfferForm(request.POST)
+        print(form.errors)
         if form.is_valid():
             form.save()
-
             listing = Listing.objects.get(_id= ObjectId(listing_id))
-            print("listing:",listing.user_id)
             listing_user = CustomUser.objects.get(id = listing.user_id)
-
-            send_mail("Someone liked your listing","here is the price", request.POST ['email'], [listing_user.email],
+            print("from the form:",type(request.POST['email']))
+            print("listing email:",type(listing_user.email))
+            message = "You have a new offer from " + str(request.POST['email'])+" for $ " + request.POST['offer']
+            print(message)
+            send_mail("Someone liked your listing",message, 'cmpe202sjsu@gmail.com', [listing_user.email],
                       fail_silently=False)
         return render(request, "main_app/send_offer.html")
 
@@ -233,6 +234,7 @@ def sign_up_view(request):
         return render(request, 'main_app/sign-up.html')
     elif request.method == "POST":
         form = CustomUserCreationForm(request.POST)
+        print(form.errors)
         if form.is_valid():
             form.save()
             return render(request, 'main_app/login.html')
@@ -281,7 +283,7 @@ def search_view(request):
     if 'square' in request.GET:
         square = request.GET['square']
         if square:
-            # TODO: Item not in posting functionality yet
+            # TODO: Item not in posting functionality ye
             print(square)
             # queryset_list = queryset_list.filter(square=square)
 

@@ -60,8 +60,8 @@ class Listing(models.Model):
 
 class Offer(models.Model):
     email = models.EmailField(max_length=255)
-    phone = models.IntegerField(max_length=13)
-    offer = models.IntegerField()
+    phone = models.BigIntegerField()
+    offer = models.BigIntegerField()
     comment = models.TextField(blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
     listing_id = models.CharField(max_length=255)
