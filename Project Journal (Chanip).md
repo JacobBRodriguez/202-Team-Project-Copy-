@@ -102,3 +102,16 @@ no progress this week
 - We don't have zoom meeting this week because we are doing our own part, and there is nothing need to talk about, and the process goes smoothly.
 - We still have slack chat to let everyone know what is the next step, and how's everything going.
 - the conclusion is that front-end is done, back-end group is working on the implementation now.
+
+#### Week 9 (12/2/2020):
+
+##### What tasks did I work on / complete?
+- UML diagrams, and part of the documentation 
+##### What am I planning to work on next?
+- none,end of the project 
+##### What tasks are blocked waiting on another team member?
+- none,end of the project 
+##### XP Core Value Status (Communication):
+- We don't have zoom meeting this week because we are doing our own part, and there is nothing need to talk about, and the process goes smoothly.
+- We still have slack chat to let everyone know what is the next step, and how's everything going.
+- the conclusion is that front-end is done, back-end group is working on the implementation now.
