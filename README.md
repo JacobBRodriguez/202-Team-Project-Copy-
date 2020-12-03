@@ -3,9 +3,9 @@ Team 5
 
 Members:
 
-Chanip Chong
-Parshwa Gandhi
-Jacob Rodriguez
+Chanip Chong </br>
+Parshwa Gandhi </br>
+Jacob Rodriguez </br>
 
 ### Design Decisions:
 #### Day 1 Design:
@@ -30,7 +30,16 @@ Jacob Rodriguez
 ![Class](https://github.com/gopinathsjsu/fa20-cmpe-202-sec-03-team-project-team-5/blob/master/design_images/graph.png?raw=true)
 
 ### Feature Set of Website:
-- (TODO: Add to)
+- Register new users/login existing users
+- Admin can remove users as needed
+- Search current listings based on certain criteria
+- Save a listing to favorites
+- Realtor and Homeowner can sell a home (can list details in listing)
+- Buyer can submit offer to seller
+- Realtor and Homeowner/Landlord(same) can rent out a home/room
+- Renter/Buyer(same) can submit offer for a rental
+- All parties can view offers they sent or received
+- Recieved offers also are sent to registered email account
 
 ### Project URLs
 GitHub Repo
